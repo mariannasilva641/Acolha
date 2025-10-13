@@ -1,0 +1,581 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap');
+/* ===== BREUL GROTESKA (versão padrão) ===== */
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-thin.otf);
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-thinitalic.otf);
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-extralight.otf);
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-extltita.otf);
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-light.otf);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-lightitalic.otf);
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-regular.otf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-italic.otf);
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-semilight.otf);
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-semilightitalic.otf);
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-bold.otf);
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-bolditalic.otf);
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-heavy.otf);
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-heavyitalic.otf);
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-black.otf);
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteska-blackitalic.otf);
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* ===== BREUL GROTESK KB (mesma família visual) ===== */
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-thin.otf);
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-thinitalic.otf);
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-extralight.otf);
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-extltita.otf);
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-light.otf);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-lightitalic.otf);
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-regular.otf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-bold.otf);
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-bolditalic.otf);
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-heavy.otf);
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-heavyitalic.otf);
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-black.otf);
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Breul Grotesk';
+    src: url(../FON/BreulGrotesk/Fontspring-DEMO-breulgroteskb-blackitalic.otf);
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica World';
+    src: url(../FON/helvetica-world-maisfontes.8fec/helvetica-world.ttf);
+}
+
+@font-face {
+    font-family: 'Lemon Tuesday';
+    src: url(../FON/lemon_tuesday/LemonTuesday.otf);
+}
+
+@font-face {
+    font-family: 'Questrial';
+    src: url(../FON/Questrial/Questrial-Regular.ttf);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../IMG/FundoCadastro.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+:root {
+    --color-neutral-0: #295435;
+    --color-neutral-10: #357447;
+    --color-neutral-30: #e6e6e6;
+    --color-neutral-40: #f5f5f5;
+
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+main {
+    height: 80vh;
+}
+
+footer {
+    width: 100%;
+    color: var(--color-neutral-40);
+}
+
+.footer-link {
+    text-decoration: none;
+}
+
+#footer_content {
+    background-color: var(--color-neutral-10);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3rem 3.5rem;
+}
+
+#footer_contacts h1 {
+    margin-bottom: 0.75rem;
+}
+
+#footer_social_media {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+#footer_social_media .footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--color-neutral-40);
+    border-radius: 50%;
+    transition: all 0.4s;
+}
+
+#footer_social_media .footer-link svg {
+    width: 15px;
+}
+
+#footer_social_media .footer-link:hover {
+    opacity: 0.8;
+}
+
+#instagram {
+    background: linear-gradient(#7f37c9, #ff2992, #ff9807);
+}
+
+#facebook {
+    background-color: #4267b3;
+}
+
+#whatsapp {
+    background-color: #25d366;
+}
+
+.footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+}
+
+.footer-list .footer-link {
+    color: var(--color-neutral-30);
+    transition: all 0.4s;
+}
+
+.footer-list .footer-link:hover {
+    color: #F4C856;
+}
+
+#footer_subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#footer_subscribe p {
+    color: var(--color-neutral-30);
+}
+
+#input_group {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-neutral-0);
+    border-radius: 4px;
+}
+
+#input_group input {
+    all: unset;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+#input_group button {
+    background-color: #F4C856;
+    border: none;
+    color: var(--color-neutral-40);
+    padding: 0px 1.25rem;
+    font-size: 1.125rem;
+    height: 100%;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+#input_group button:hover {
+    opacity: 0.8;
+}
+
+#footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-neutral-0);
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+.header {
+    background: #357447;
+    padding-inline: 16px;
+}
+
+.nav {
+    max-width: 1280px;
+    height: 70px;
+    margin-inline: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: block;
+    width: 100px;
+    height: 60px;
+    margin-top: 8px;
+    background-image: url("../IMG/LogoAcolhaBranco.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    list-style: none;
+}
+
+.nav-list a {
+    font-size: 18px;
+    color: #fff;
+    padding-block: 16px;
+}
+
+.hero {
+    height: calc(100vh - 70px);
+    background: center / cover no-repeat url("./bg.jpg");
+}
+
+.navegação {
+    display: none;
+    border: none;
+    background: none;
+    border-top: 3px solid #fff;
+    cursor: pointer;
+}
+
+.navegação::after,
+.navegação::before {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin-top: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Imagem dentro do menu - visível só no mobile */
+.nav-list .imagem-menu {
+    width: 150px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(-15px);
+    height: 0;
+    background-image: url("../IMG/CivitasTech.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    overflow: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, height 0.3s ease;
+    display: block;
+}
+
+/* Ativa animação no menu aberto */
+.nav.active .nav-list .imagem-menu {
+    opacity: 1;
+    transform: translateY(0);
+    height: 150px;
+    /* ou a altura real da imagem */
+}
+
+
+
+/* Esconde completamente no modo desktop */
+@media (min-width: 751px) {
+    .nav-list .imagem-menu {
+        display: none !important;
+    }
+}
+
+/* Responsivo */
+@media (max-width: 750px) {
+    .navegação {
+        display: block;
+        z-index: 1100;
+        /* botão de menu na frente do formulário */
+        position: fixed;
+        /* para o botão fixar no topo */
+        top: 26px;
+        right: 16px;
+    }
+
+    .nav-list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #357447;
+        clip-path: circle(100px at 90% -15%);
+        transition: 1s ease-out;
+
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+
+        pointer-events: none;
+
+        z-index: 1000;
+        /* Menu na frente do formulário */
+    }
+
+    .nav-list a {
+        font-size: 24px;
+        opacity: 0;
+    }
+
+    .nav-list li:nth-child(1) a {
+        transition: 0.5s 0.2s;
+    }
+
+    .nav-list li:nth-child(2) a {
+        transition: 0.5s 0.4s;
+    }
+
+    .nav-list li:nth-child(3) a {
+        transition: 0.5s 0.6s;
+    }
+
+    /* Ativa menu e links */
+    .nav.active .nav-list {
+        clip-path: circle(1500px at 90% -15%);
+        pointer-events: all;
+    }
+
+    .nav.active .nav-list a {
+        opacity: 1;
+    }
+
+    .nav.active .navegação {
+        border-top-color: transparent;
+    }
+
+    .nav.active .navegação::before {
+        transform: rotate(135deg);
+    }
+
+    .nav.active .navegação::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+    /* <<< ADICIONADO para o formulário ficar atrás do menu >>> */
+    .container-center {
+        position: relative;
+        z-index: 500;
+        /* atrás do menu */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #footer_content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    #footer_content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
+    }
+}
