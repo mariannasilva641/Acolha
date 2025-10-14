@@ -10,7 +10,7 @@ export default function Home() {
     { nome: 'Heloisa Maria', funcao: 'Produtora Midiatica', foto: require('../IMG/Atlas.png') },
     { nome: 'Lorayne Yasmin ', funcao: 'Pesquisadora de Inclusão Social', foto: require('../IMG/Atlas.png') },
     { nome: 'Marianna Silva', funcao: 'Gestora de Logística & Programadora Front-End', foto: require('../IMG/Atlas.png') },
-    { nome: 'Matheus Gabriel', funcao: 'Supervisor & Programadora Front-End', foto: require('../IMG/Atlas.png') },
+    { nome: 'Matheus Gabriel', funcao: 'Supervisor & Programador Front-End', foto: require('../IMG/Atlas.png') },
     { nome: 'Nicolas Vieira', funcao: 'Desenvolvedor BackEnd', foto: require('../IMG/Atlas.png') },
     { nome: 'Paulo Diaz', funcao: 'Pesquisador Legislativo', foto: require('../IMG/Atlas.png') },
     { nome: 'Pedro Nogueira', funcao: 'Arquivista e Técnico de Documentação', foto: require('../IMG/Atlas.png') },
