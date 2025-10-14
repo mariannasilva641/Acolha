@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function CadastroPF() {
+  const navigation = useNavigation();
+
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -11,17 +14,21 @@ export default function CadastroPF() {
   const [dataNascimento, setDataNascimento] = useState('');
 
   const handleCadastrar = () => {
-    // Aqui você pode colocar lógica de cadastro
     console.log({ nome, email, senha, cpf, telefone, nacionalidade, dataNascimento });
   };
 
   return (
     <ImageBackground
-      source={require('../IMG/FundoCadastro.jpeg')} // coloque a imagem na pasta correta
+      source={require('../IMG/FundoCadastro.jpeg')}
       style={styles.background}
       resizeMode="cover"
     >
       <ScrollView contentContainerStyle={styles.container}>
+        {/* Botão de Voltar */}
+        <TouchableOpacity style={styles.botaoVoltar} onPress={() => navigation.navigate('home')}>
+          <Text style={styles.textoVoltar}>← Voltar à Página Inicial</Text>
+        </TouchableOpacity>
+
         <Text style={styles.titulo}>Tela de Cadastro - Pessoa Física</Text>
 
         <View style={styles.card}>
@@ -86,7 +93,9 @@ export default function CadastroPF() {
         <View style={styles.footer}>
           <Text style={styles.footerTitulo}>Acolha</Text>
           <Text style={styles.footerTexto}>Acolhendo vidas. Construindo Futuros</Text>
-          <Text style={styles.footerCopyright}>© 2025 todos os direitos reservados. Acolha é uma marca registrada da Civitas Tech.</Text>
+          <Text style={styles.footerCopyright}>
+            © 2025 todos os direitos reservados. Acolha é uma marca registrada da Civitas Tech.
+          </Text>
         </View>
       </ScrollView>
     </ImageBackground>
@@ -102,6 +111,19 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     paddingVertical: 20,
+  },
+  botaoVoltar: {
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+    marginBottom: 10,
+    backgroundColor: '#357447',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 6,
+  },
+  textoVoltar: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
   titulo: {
     fontSize: 24,

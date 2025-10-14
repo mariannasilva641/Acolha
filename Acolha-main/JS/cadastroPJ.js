@@ -4,6 +4,11 @@ import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 
 export default function CadastroPJ() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ alignItems: "center" }}>
+      {/* Botão de Voltar */}
+    <TouchableOpacity style={styles.botaoVoltar} onPress={() => navigation.navigate('home')}>
+        <Text style={styles.textoVoltar}>← Voltar à Página Inicial</Text>
+    </TouchableOpacity>
+      
       <Text style={styles.titulo}>Tela de Cadastro - Pessoa Jurídica</Text>
 
       <View style={styles.card}>
@@ -95,6 +100,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 15,
     alignItems: "center",
+  },
+   botaoVoltar: {
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+    marginBottom: 10,
+    marginTop:20,
+    backgroundColor: '#357447',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 6,
+  },
+  textoVoltar: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
   botaoTexto: {
     color: "white",
