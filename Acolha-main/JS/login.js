@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, 
-  Image, Modal, ImageBackground 
+  Image, Modal, ImageBackground, Linking 
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -99,11 +99,12 @@ export default function Login() {
           </View>
         </Modal>
 
-        {/* Footer */}
+        {/* Rodapé */}
         <View style={styles.footer}>
-          <Text style={styles.footerTitulo}>Acolha</Text>
-          <Text style={styles.footerTexto}>Acolhendo vidas.{"\n"}Construindo Futuros</Text>
+          <Text style={styles.footerTitle}>Acolha</Text>
+          <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
 
+          {/* Sugestões */}
           <View style={styles.subscribe}>
             <Text style={styles.subscribeTitle}>Sugestões</Text>
             <Text style={styles.subscribeText}>
@@ -114,6 +115,7 @@ export default function Login() {
             <View style={styles.inputGroup}>
               <TextInput
                 placeholder="Sua Sugestão"
+                placeholderTextColor="white"
                 style={styles.inputSugestao}
                 multiline
                 numberOfLines={4}
@@ -127,6 +129,16 @@ export default function Login() {
             </View>
           </View>
 
+          {/* Redes sociais */}
+          <View style={styles.socialContainer}>
+            <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
+              <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
+              <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.footerCopyright}>
             © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
           </Text>
@@ -137,177 +149,53 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
+  background: { flex: 1, width: '100%', height: '100%' },
+  container: { 
+    alignItems: 'center', 
+    paddingVertical: 20, 
+    flexGrow: 1, 
+    justifyContent: 'flex-start'
   },
-  container: {
-    alignItems: 'center',
-    paddingVertical: 20,
-    backgroundColor: 'transparent',
-    flexGrow: 1,
-    justifyContent: 'space-between',
+  logoContainer: { alignItems: 'center', marginBottom: 10, marginTop: 20 },
+  logo: { width: 200, height: 150, resizeMode: 'contain' },
+  card: { 
+    width: '90%', 
+    backgroundColor: 'white', 
+    borderRadius: 10, 
+    padding: 20, 
+    shadowColor: '#000', 
+    shadowOpacity: 0.1, 
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowRadius: 4 
   },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 10,
-    marginTop: 20,
-  },
-  logo: {
-    width: 200,
-    height: 150,
-    resizeMode: 'contain',
-  },
-  card: {
-    width: '90%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 4,
-    marginBottom: 190, // dá um respiro entre o card e o rodapé
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 6,
-    padding: 10,
-    marginVertical: 10,
-  },
-  linksContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 15,
-  },
-  link: {
-    color: '#357447',
-    textDecorationLine: 'underline',
-    fontSize: 12,
-  },
-  botao: {
-    backgroundColor: '#357447',
-    padding: 15,
-    borderRadius: 6,
-    alignItems: 'center',
-  },
-  botaoTexto: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  voltarBotao: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  voltarTexto: {
-    color: '#357447',
-    fontWeight: 'bold',
-  },
-  footer: {
-    alignItems: 'center',
-    paddingVertical: 25,
-    backgroundColor: '#357447',
-    width: '100%',
-    height:'35%'
-  },
-  footerTitulo: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 5,
-  },
-  footerTexto: {
-    color: 'white',
-    textAlign: 'center',
-    marginVertical: 5,
-    lineHeight: 20,
-  },
-  subscribe: {
-    marginTop: 10,
-    alignItems: 'center',
-    width: '90%',
-  },
-  subscribeTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  subscribeText: {
-    textAlign: 'center',
-    marginVertical: 10,
-    color: 'white',
-    lineHeight: 20,
-  },
-  inputGroup: {
-    flexDirection: 'row',
-    width: '100%',
-    alignItems: 'center',
-  },
-  inputSugestao: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    flex: 1,
-    marginRight: 5,
-    height: 41,
-  },
-  inputButton: {
-    backgroundColor: '#255736',
-    paddingHorizontal: 15,
-    justifyContent: 'center',
-    borderRadius: 5,
-    height: 41,
-  },
-  inputButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  footerCopyright: {
-    color: '#ccc',
-    fontSize: 12,
-    textAlign: 'center',
-    marginTop: 15,
-    lineHeight: 18,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContent: {
-    width: '80%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
-    alignItems: 'center',
-  },
-  modalTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  modalOption: {
-    backgroundColor: '#357447',
-    width: '100%',
-    padding: 15,
-    borderRadius: 6,
-    marginBottom: 10,
-    alignItems: 'center',
-  },
-  modalOptionText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
-  modalClose: {
-    marginTop: 5,
-  },
-  modalCloseText: {
-    color: '#357447',
-    fontWeight: 'bold',
-  },
+  input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 10, marginVertical: 10 },
+  linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
+  link: { color: '#357447', textDecorationLine: 'underline', fontSize: 12 },
+  botao: { backgroundColor: '#357447', padding: 15, borderRadius: 6, alignItems: 'center' },
+  botaoTexto: { color: '#fff', fontWeight: 'bold' },
+  voltarBotao: { marginTop: 15, alignItems: 'center' },
+  voltarTexto: { color: '#357447', fontWeight: 'bold' },
+
+  /* Rodapé */
+  footer: { alignItems: 'center', paddingVertical: 25, backgroundColor: '#357447', width: '100%',height:'40%',marginTop:90 },
+  footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
+  footerText: { color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
+  subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
+  subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
+  subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
+  inputGroup: { flexDirection: 'row', width: '90%', alignItems: 'center' },
+  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white' },
+  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41 },
+  inputButtonText: { color: 'white', fontWeight: 'bold' },
+  socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
+  socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10 },
+
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
+  modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },
+  modalTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
+  modalOption: { backgroundColor: '#357447', width: '100%', padding: 15, borderRadius: 6, marginBottom: 10, alignItems: 'center' },
+  modalOptionText: { color: 'white', fontWeight: 'bold', fontSize: 14 },
+  modalClose: { marginTop: 5 },
+  modalCloseText: { color: '#357447', fontWeight: 'bold' },
 });
