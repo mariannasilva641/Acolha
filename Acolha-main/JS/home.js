@@ -1,13 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, 
-  Linking, FlatList, Dimensions, ImageBackground 
+  Linking, FlatList, ImageBackground, Animated, Easing
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const navigation = useNavigation();
   const [menuAberto, setMenuAberto] = useState(false);
+
+  // 📌 Animação do menu
+  const menuAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(menuAnim, {
+      toValue: menuAberto ? 1 : 0,
+      duration: 200,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+    }).start();
+  }, [menuAberto]);
+
+  const toggleMenu = () => setMenuAberto(!menuAberto);
+
+  const handleNavigate = (screen) => {
+    setMenuAberto(false);
+    setTimeout(() => navigation.navigate(screen), 0);
+  };
+
+  // 📌 Estilo da animação
+  const menuStyle = {
+    opacity: menuAnim,
+    transform: [
+      {
+        translateY: menuAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [-10, 0],
+        }),
+      },
+    ],
+  };
 
   const equipe = [
     { nome: 'David Wendel', funcao: 'Administrador', foto: require('../IMG/Atlas.png') },
@@ -22,48 +54,50 @@ export default function Home() {
     { nome: 'Yasmyn Araujo', funcao: 'Produtora Midiática', foto: require('../IMG/Atlas.png') },
   ];
 
-  const toggleMenu = () => setMenuAberto(!menuAberto);
-
   return (
     <ImageBackground
       source={require('../IMG/FundoAcolha.png')}
       style={styles.background}
     >
-      <ScrollView contentContainerStyle={styles.container}>
-        
-        {/* Navbar */}
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator>
+        {/* 🌿 Navbar */}
         <View style={styles.navbar}>
           <Image source={require('../IMG/LogoAcolhaBranco.png')} style={styles.navbarLogo} />
 
-          {/* Menu Dropdown */}
+          {/* 🌿 Menu Dropdown animado */}
           <View style={styles.menuContainer}>
             <TouchableOpacity onPress={toggleMenu}>
               <Text style={styles.navLink}>Menu ▼</Text>
             </TouchableOpacity>
-            {menuAberto && (
-              <View style={styles.dropdownMenu}>
-                <TouchableOpacity onPress={() => { setMenuAberto(false); navigation.navigate('projetosSociais'); }}>
-                  <Text style={styles.dropdownItem}>Projetos Sociais</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { setMenuAberto(false); navigation.navigate('sobreNos'); }}>
-                  <Text style={styles.dropdownItem}>Sobre Nós</Text>
-                </TouchableOpacity>
-              </View>
-            )}
+
+            <Animated.View 
+              style={[
+                styles.dropdownMenu, 
+                menuStyle,
+                { display: menuAberto ? 'flex' : 'none' }
+              ]}
+            >
+              <TouchableOpacity onPress={() => handleNavigate('projetosSociais')}>
+                <Text style={styles.dropdownItem}>📌 Projetos Sociais</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleNavigate('sobreNos')}>
+                <Text style={styles.dropdownItem}>ℹ️ Sobre Nós</Text>
+              </TouchableOpacity>
+            </Animated.View>
           </View>
 
-          {/* Links fixos */}
+          {/* 🌿 Links fixos */}
           <View style={styles.fixedLinks}>
-            <TouchableOpacity onPress={() => navigation.navigate('ajuda')}>
+            <TouchableOpacity onPress={() => handleNavigate('ajuda')}>
               <Text style={styles.navLink}>Ajuda</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={() => handleNavigate('Login')}>
               <Text style={styles.navLink}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Cards */}
+        {/* 📌 Cards */}
         <View style={styles.card}>
           <Image source={require('../IMG/tiVerde.webp')} style={styles.cardImage} resizeMode="cover" />
           <Text style={styles.cardTitle}>TI Verde</Text>
@@ -86,7 +120,7 @@ export default function Home() {
           </Text>
           <TouchableOpacity
             style={styles.cardButton}
-            onPress={() => Linking.openURL('https://www.acnur.org/')}
+            onPress={() => Linking.openURL('https://www.instagram.com/p/DOuPjmXEVOZ/?img_index=1')}
           >
             <Text style={styles.cardButtonText}>Ler Mais</Text>
           </TouchableOpacity>
@@ -106,7 +140,7 @@ export default function Home() {
           </TouchableOpacity>
         </View>
 
-        {/* Carrossel da equipe */}
+        {/* 👥 Carrossel da Equipe */}
         <View style={styles.equipeContainer}>
           <Text style={styles.equipeTitulo}>Nossa Equipe</Text>
           <FlatList
@@ -124,7 +158,7 @@ export default function Home() {
           />
         </View>
 
-        {/* Footer */}
+        {/* 🦶 Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>Acolha</Text>
           <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
@@ -147,17 +181,14 @@ export default function Home() {
             Acolha é uma marca registrada da Civitas Tech.
           </Text>
         </View>
-
       </ScrollView>
     </ImageBackground>
   );
 }
 
-const { width } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   background: { flex: 1, width: '100%', height: '100%' },
-  container: { alignItems: 'center', paddingBottom: 20, backgroundColor: 'transparent' },
+  container: { alignItems: 'center', backgroundColor: 'transparent', width: '100%' },
 
   navbar: {
     width: '100%',
@@ -168,14 +199,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    zIndex: 10
   },
   navbarLogo: { width: 120, height: 40, resizeMode: 'contain', marginBottom: 5 },
-
   menuContainer: { position: 'relative' },
   fixedLinks: { flexDirection: 'row', alignItems: 'center' },
- navLinks: { flexDirection: 'row', flex: 1, justifyContent: 'flex-end', marginRight: 10 },
   navLink: { color: 'white', marginHorizontal: 10, fontWeight: 'bold', fontSize: 12 },
-
 
   dropdownMenu: {
     position: 'absolute',
@@ -185,9 +214,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    zIndex: 100,
+    zIndex: 1000,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
-  dropdownItem: { paddingVertical: 4, fontSize: 12, color: 'black' },
+  dropdownItem: { paddingVertical: 6, fontSize: 14, color: '#357447', fontWeight: '600' },
 
   card: {
     width: '70%',

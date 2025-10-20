@@ -30,74 +30,76 @@ export default function Login() {
   return (
     <ImageBackground source={require('../IMG/FundoAcolha.png')} style={styles.background}>
       <ScrollView 
-        contentContainerStyle={styles.container} 
+        contentContainerStyle={styles.scrollContainer} 
         showsVerticalScrollIndicator={false} 
         bounces={false}
       >
-        {/* Logo */}
-        <View style={styles.logoContainer}>
-          <Image source={require('../IMG/width_500.webp')} style={styles.logo} />
-        </View>
-
-        {/* Formulário de login */}
-        <View style={styles.card}>
-          <TextInput
-            style={styles.input}
-            placeholder="Usuário"
-            value={usuario}
-            onChangeText={setUsuario}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Senha"
-            value={senha}
-            onChangeText={setSenha}
-            secureTextEntry
-          />
-
-          <View style={styles.linksContainer}>
-            <Text style={styles.link} onPress={() => console.log('Esqueci minha senha')}>
-              Esqueci minha senha
-            </Text>
-            <Text style={styles.link} onPress={() => setModalVisible(true)}>
-              Criar conta
-            </Text>
+        <View style={styles.content}>
+          {/* Logo */}
+          <View style={styles.logoContainer}>
+            <Image source={require('../IMG/width_500.webp')} style={styles.logo} />
           </View>
 
-          <TouchableOpacity style={styles.botao} onPress={handleLogin}>
-            <Text style={styles.botaoTexto}>Acessar</Text>
-          </TouchableOpacity>
+          {/* Formulário de login */}
+          <View style={styles.card}>
+            <TextInput
+              style={styles.input}
+              placeholder="Usuário"
+              value={usuario}
+              onChangeText={setUsuario}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Senha"
+              value={senha}
+              onChangeText={setSenha}
+              secureTextEntry
+            />
 
-          <TouchableOpacity style={styles.voltarBotao} onPress={() => navigation.navigate('home')}>
-            <Text style={styles.voltarTexto}>⬅ Voltar à página inicial</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Modal para escolher PF ou PJ */}
-        <Modal
-          visible={modalVisible}
-          transparent
-          animationType="fade"
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Escolha o tipo de cadastro</Text>
-
-              <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPF}>
-                <Text style={styles.modalOptionText}>Pessoa Física</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPJ}>
-                <Text style={styles.modalOptionText}>Pessoa Jurídica</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.modalClose} onPress={() => setModalVisible(false)}>
-                <Text style={styles.modalCloseText}>Cancelar</Text>
-              </TouchableOpacity>
+            <View style={styles.linksContainer}>
+              <Text style={styles.link} onPress={() => console.log('Esqueci minha senha')}>
+                Esqueci minha senha
+              </Text>
+              <Text style={styles.link} onPress={() => setModalVisible(true)}>
+                Criar conta
+              </Text>
             </View>
+
+            <TouchableOpacity style={styles.botao} onPress={handleLogin}>
+              <Text style={styles.botaoTexto}>Acessar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.voltarBotao} onPress={() => navigation.navigate('home')}>
+              <Text style={styles.voltarTexto}>⬅ Voltar à página inicial</Text>
+            </TouchableOpacity>
           </View>
-        </Modal>
+
+          {/* Modal para escolher PF ou PJ */}
+          <Modal
+            visible={modalVisible}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContent}>
+                <Text style={styles.modalTitle}>Escolha o tipo de cadastro</Text>
+
+                <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPF}>
+                  <Text style={styles.modalOptionText}>Pessoa Física</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPJ}>
+                  <Text style={styles.modalOptionText}>Pessoa Jurídica</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.modalClose} onPress={() => setModalVisible(false)}>
+                  <Text style={styles.modalCloseText}>Cancelar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+        </View>
 
         {/* Rodapé */}
         <View style={styles.footer}>
@@ -150,14 +152,12 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   background: { flex: 1, width: '100%', height: '100%' },
-  container: { 
-    alignItems: 'center', 
-    paddingVertical: 20, 
-    flexGrow: 1, 
-    justifyContent: 'flex-start'
-  },
+  scrollContainer: { flexGrow: 1, justifyContent: 'space-between', minHeight: '100%' },
+  content: { flex: 1, alignItems: 'center' },
+
   logoContainer: { alignItems: 'center', marginBottom: 10, marginTop: 20 },
   logo: { width: 200, height: 150, resizeMode: 'contain' },
+
   card: { 
     width: '90%', 
     backgroundColor: 'white', 
@@ -166,7 +166,9 @@ const styles = StyleSheet.create({
     shadowColor: '#000', 
     shadowOpacity: 0.1, 
     shadowOffset: { width: 0, height: 4 }, 
-    shadowRadius: 4 
+    shadowRadius: 4,
+    marginBottom: 20,
+    marginTop:40,
   },
   input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 10, marginVertical: 10 },
   linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
@@ -176,20 +178,50 @@ const styles = StyleSheet.create({
   voltarBotao: { marginTop: 15, alignItems: 'center' },
   voltarTexto: { color: '#357447', fontWeight: 'bold' },
 
-  /* Rodapé */
-  footer: { alignItems: 'center', paddingVertical: 25, backgroundColor: '#357447', width: '100%',height:'40%',marginTop:90 },
+  footer: {
+    marginTop:80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 25,
+    backgroundColor: '#357447',
+    width: '100%',
+  },
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
   footerText: { color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
-  inputGroup: { flexDirection: 'row', width: '90%', alignItems: 'center' },
-  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white' },
-  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41 },
+  inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
+  inputSugestao: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    marginRight: 5,
+    height: 41,
+    color: 'white',
+    marginTop:15,
+    marginBottom:15
+  },
+  inputButton: {
+    backgroundColor: '#255736',
+    paddingHorizontal: 15,
+    justifyContent: 'center',
+    borderRadius: 5,
+    height: 41,
+  },
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10 },
+  footerCopyright: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 5,
+  },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
   modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },

@@ -11,7 +11,9 @@ import projetosSociais from './JS/projetosSociais';
 import cadastroPF from './JS/cadastroPF';
 import cadastroPJ from './JS/cadastroPJ';
 import sobreNos from './JS/sobreNos';
-
+import perfilPF from './JS/perfilPF';
+import perfilPJ from './JS/perfilPJ';
+import editarPerfilPJ from './JS/editarPerfilPJ';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +27,11 @@ export default function App() {
         <Stack.Screen name="projetosSociais" component={projetosSociais} />
         <Stack.Screen name="cadastroPF" component={cadastroPF} />
         <Stack.Screen name="cadastroPJ" component={cadastroPJ} />
-       <Stack.Screen name="sobreNos" component={sobreNos} />
+        <Stack.Screen name="perfilPF" component={perfilPF} />
+        <Stack.Screen name="perfilPJ" component={perfilPJ} />
+        <Stack.Screen name="sobreNos" component={sobreNos} />
+         <Stack.Screen name="editarPerfilPJ" component={editarPerfilPJ} />
+        
 
 
       </Stack.Navigator>
