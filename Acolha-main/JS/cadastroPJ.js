@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet,Image, Linking, SafeAreaView, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, Image, Linking, SafeAreaView, KeyboardAvoidingView, Platform, ImageBackground } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 export default function CadastroPJ() {
@@ -152,172 +152,174 @@ export default function CadastroPJ() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
-      >
-        <ScrollView 
-          contentContainerStyle={styles.scrollContainer} 
-          bounces={false}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
+      <ImageBackground source={require('../IMG/FundoCadastro.jpeg')} style={styles.backgroundImage}>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         >
-          <View style={styles.content}>
-            <TouchableOpacity style={styles.botaoVoltar} onPress={() => navigation.navigate('home')}>
-              <Text style={styles.textoVoltar}>← Voltar à Página Inicial</Text>
-            </TouchableOpacity>
-            
-            <Text style={styles.titulo}>Cadastro - Pessoa Jurídica</Text>
-
-            <View style={styles.card}>
-              <TextInput 
-                style={styles.input} 
-                placeholder="Nome" 
-                value={nome}
-                onChangeText={setNome}
-              />
-              {errorNome ? <Text style={styles.errorText}>{errorNome}</Text> : null}
-
-              <View style={styles.row}>
-                <View style={{ flex: 2 }}>
-                  <TextInput 
-                    style={[styles.inputFlex2, { marginBottom: errorEmail ? 0 : 8 }]} 
-                    placeholder="Email" 
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
-                  {errorEmail ? <Text style={styles.errorText}>{errorEmail}</Text> : null}
-                </View>
-
-                <View style={{ flex: 1 }}>
-                  <TextInput 
-                    style={[styles.inputFlex1, { marginBottom: errorEmailDomain ? 0 : 8 }]} 
-                    placeholder="@gmail.com" 
-                    value={emailDomain}
-                    onChangeText={setEmailDomain}
-                    autoCapitalize="none"
-                  />
-                  {errorEmailDomain ? <Text style={styles.errorText}>{errorEmailDomain}</Text> : null}
-                </View>
-              </View>
-
-              <TextInput 
-                style={styles.input} 
-                placeholder="Senha" 
-                secureTextEntry 
-                value={senha}
-                onChangeText={setSenha}
-              />
-              {errorSenha ? <Text style={styles.errorText}>{errorSenha}</Text> : null}
-
-              <TextInput 
-                style={styles.input} 
-                placeholder="CNPJ" 
-                value={cnpj}
-                onChangeText={setCnpj}
-                keyboardType="number-pad"
-              />
-              {errorCnpj ? <Text style={styles.errorText}>{errorCnpj}</Text> : null}
-
-              <TextInput 
-                style={styles.input} 
-                placeholder="Telefone" 
-                keyboardType="phone-pad" 
-                value={telefone}
-                onChangeText={setTelefone}
-              />
-              {errorTelefone ? <Text style={styles.errorText}>{errorTelefone}</Text> : null}
-
-              <View style={styles.row}>
-                <View style={{ flex: 2 }}>
-                  <TextInput 
-                    style={[styles.inputFlex2, { marginBottom: errorNomeRepresentante ? 0 : 8 }]} 
-                    placeholder="Nome do Representante" 
-                    value={nomeRepresentante}
-                    onChangeText={setNomeRepresentante}
-                  />
-                  {errorNomeRepresentante ? <Text style={styles.errorText}>{errorNomeRepresentante}</Text> : null}
-                </View>
-
-                <View style={{ flex: 1 }}>
-                  <TextInput 
-                    style={[styles.inputFlex1, { marginBottom: errorCargo ? 0 : 8 }]} 
-                    placeholder="Cargo" 
-                    value={cargo}
-                    onChangeText={setCargo}
-                  />
-                  {errorCargo ? <Text style={styles.errorText}>{errorCargo}</Text> : null}
-                </View>
-              </View>
-
-              <TextInput 
-                style={[styles.input, { height: 80 }]} 
-                placeholder="Área de Atuação" 
-                multiline 
-                value={areaAtuacao}
-                onChangeText={setAreaAtuacao}
-              />
-              {errorAreaAtuacao ? <Text style={styles.errorText}>{errorAreaAtuacao}</Text> : null}
-
-              <TextInput 
-                style={[styles.input, { height: 100 }]} 
-                placeholder="Mensagem" 
-                multiline 
-                value={mensagem}
-                onChangeText={setMensagem}
-              />
-              {errorMensagem ? <Text style={styles.errorText}>{errorMensagem}</Text> : null}
-
-              <TouchableOpacity style={styles.botao} onPress={handleCadastrar}>
-                <Text style={styles.botaoTexto}>Cadastrar</Text>
+          <ScrollView 
+            contentContainerStyle={styles.scrollContainer} 
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.content}>
+              <TouchableOpacity style={styles.botaoVoltar} onPress={() => navigation.navigate('home')}>
+                <Text style={styles.textoVoltar}>← Voltar à Página Inicial</Text>
               </TouchableOpacity>
-            </View>
-          </View>
+              
+              <Text style={styles.titulo}>Cadastro - Pessoa Jurídica</Text>
 
-          {/* Footer */}
-          <View style={styles.footer}>
-            <Text style={styles.footerTitle}>Acolha</Text>
-            <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
-
-            <View style={styles.subscribe}>
-              <Text style={styles.subscribeTitle}>Sugestões</Text>
-              <Text style={styles.subscribeText}>
-                Envie aqui suas sugestões, dúvidas ou críticas.{"\n"}
-                Sua opinião é muito importante para nós!
-              </Text>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  placeholder="Sua Sugestão"
-                  placeholderTextColor="white"
-                  style={styles.inputSugestao}
-                  multiline
-                  numberOfLines={4}
-                  textAlignVertical="top"
+              <View style={styles.card}>
+                <TextInput 
+                  style={styles.input} 
+                  placeholder="Nome" 
+                  value={nome}
+                  onChangeText={setNome}
                 />
-                <TouchableOpacity style={styles.inputButton}>
-                  <Text style={styles.inputButtonText}>➤</Text>
+                {errorNome ? <Text style={styles.errorText}>{errorNome}</Text> : null}
+
+                <View style={styles.row}>
+                  <View style={{ flex: 2 }}>
+                    <TextInput 
+                      style={[styles.inputFlex2, { marginBottom: errorEmail ? 0 : 8 }]} 
+                      placeholder="Email" 
+                      value={email}
+                      onChangeText={setEmail}
+                      keyboardType="email-address"
+                      autoCapitalize="none"
+                    />
+                    {errorEmail ? <Text style={styles.errorText}>{errorEmail}</Text> : null}
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <TextInput 
+                      style={[styles.inputFlex1, { marginBottom: errorEmailDomain ? 0 : 8 }]} 
+                      placeholder="@gmail.com" 
+                      value={emailDomain}
+                      onChangeText={setEmailDomain}
+                      autoCapitalize="none"
+                    />
+                    {errorEmailDomain ? <Text style={styles.errorText}>{errorEmailDomain}</Text> : null}
+                  </View>
+                </View>
+
+                <TextInput 
+                  style={styles.input} 
+                  placeholder="Senha" 
+                  secureTextEntry 
+                  value={senha}
+                  onChangeText={setSenha}
+                />
+                {errorSenha ? <Text style={styles.errorText}>{errorSenha}</Text> : null}
+
+                <TextInput 
+                  style={styles.input} 
+                  placeholder="CNPJ" 
+                  value={cnpj}
+                  onChangeText={setCnpj}
+                  keyboardType="number-pad"
+                />
+                {errorCnpj ? <Text style={styles.errorText}>{errorCnpj}</Text> : null}
+
+                <TextInput 
+                  style={styles.input} 
+                  placeholder="Telefone" 
+                  keyboardType="phone-pad" 
+                  value={telefone}
+                  onChangeText={setTelefone}
+                />
+                {errorTelefone ? <Text style={styles.errorText}>{errorTelefone}</Text> : null}
+
+                <View style={styles.row}>
+                  <View style={{ flex: 2 }}>
+                    <TextInput 
+                      style={[styles.inputFlex2, { marginBottom: errorNomeRepresentante ? 0 : 8 }]} 
+                      placeholder="Nome do Representante" 
+                      value={nomeRepresentante}
+                      onChangeText={setNomeRepresentante}
+                    />
+                    {errorNomeRepresentante ? <Text style={styles.errorText}>{errorNomeRepresentante}</Text> : null}
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <TextInput 
+                      style={[styles.inputFlex1, { marginBottom: errorCargo ? 0 : 8 }]} 
+                      placeholder="Cargo" 
+                      value={cargo}
+                      onChangeText={setCargo}
+                    />
+                    {errorCargo ? <Text style={styles.errorText}>{errorCargo}</Text> : null}
+                  </View>
+                </View>
+
+                <TextInput 
+                  style={[styles.input, { height: 80 }]} 
+                  placeholder="Área de Atuação" 
+                  multiline 
+                  value={areaAtuacao}
+                  onChangeText={setAreaAtuacao}
+                />
+                {errorAreaAtuacao ? <Text style={styles.errorText}>{errorAreaAtuacao}</Text> : null}
+
+                <TextInput 
+                  style={[styles.input, { height: 100 }]} 
+                  placeholder="Mensagem" 
+                  multiline 
+                  value={mensagem}
+                  onChangeText={setMensagem}
+                />
+                {errorMensagem ? <Text style={styles.errorText}>{errorMensagem}</Text> : null}
+
+                <TouchableOpacity style={styles.botao} onPress={handleCadastrar}>
+                  <Text style={styles.botaoTexto}>Cadastrar</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
-            <View style={styles.socialContainer}>
-              <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-                <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
-              </TouchableOpacity>
-               <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
-                 <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
-               </TouchableOpacity>      
-            </View>
+            {/* Footer */}
+            <View style={styles.footer}>
+              <Text style={styles.footerTitle}>Acolha</Text>
+              <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
 
-            <Text style={styles.footerCopyright}>
-               © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
-            </Text>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+              <View style={styles.subscribe}>
+                <Text style={styles.subscribeTitle}>Sugestões</Text>
+                <Text style={styles.subscribeText}>
+                  Envie aqui suas sugestões, dúvidas ou críticas.{"\n"}
+                  Sua opinião é muito importante para nós!
+                </Text>
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    placeholder="Sua Sugestão"
+                    placeholderTextColor="white"
+                    style={styles.inputSugestao}
+                    multiline
+                    numberOfLines={4}
+                    textAlignVertical="top"
+                  />
+                  <TouchableOpacity style={styles.inputButton}>
+                    <Text style={styles.inputButtonText}>➤</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View style={styles.socialContainer}>
+                <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
+                  <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+                </TouchableOpacity>
+                 <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
+                   <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
+                 </TouchableOpacity>      
+              </View>
+
+              <Text style={styles.footerCopyright}>
+                 © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
+              </Text>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -330,7 +332,7 @@ const styles = StyleSheet.create({
   card: { width: "90%", backgroundColor: "white", padding: 20, borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 5, elevation: 5 },
   input: { borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 10, marginVertical: 8, backgroundColor: '#fff' },
   inputFlex2: { flex: 2, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 10, marginVertical: 8, marginRight: 5, backgroundColor: '#fff'},
-  inputFlex1: { flex: 1, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 10, marginVertical: 8, backgroundColor: '#fff', width: 113 },
+  inputFlex1: { flex: 1, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 10, marginVertical: 8, backgroundColor: '#fff', width: 101 },
   row: { flexDirection: "row", justifyContent: "space-between" },
   botao: { backgroundColor: "#357447", padding: 15, borderRadius: 8, marginTop: 15, alignItems: "center" },
   botaoTexto: { color: "white", fontWeight: "bold" },
@@ -365,5 +367,10 @@ const styles = StyleSheet.create({
     textAlign: 'center', 
     marginTop: 10,
     fontWeight: 'bold'
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });

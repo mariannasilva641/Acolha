@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#357447',
     fontWeight: '600',
+    width:65
   },
 
   contentContainer: { width: '85%', marginTop: 20 },
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
     color: 'white',
     height: 40
   },
-  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5 },
+  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5,width:41,height:41 },
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10, borderRadius: 10 },

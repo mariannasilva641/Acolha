@@ -56,15 +56,15 @@ export default function Home() {
 
   return (
     <ImageBackground
-      source={require('../IMG/FundoAcolha.png')}
+      source={require('../IMG/FundoCadastro.jpeg')}
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator>
-        {/* 🌿 Navbar */}
+        {/*  Navbar */}
         <View style={styles.navbar}>
           <Image source={require('../IMG/LogoAcolhaBranco.png')} style={styles.navbarLogo} />
 
-          {/* 🌿 Menu Dropdown animado */}
+          {/*  Menu Dropdown animado */}
           <View style={styles.menuContainer}>
             <TouchableOpacity onPress={toggleMenu}>
               <Text style={styles.navLink}>Menu ▼</Text>
@@ -86,7 +86,7 @@ export default function Home() {
             </Animated.View>
           </View>
 
-          {/* 🌿 Links fixos */}
+          {/*  Links fixos */}
           <View style={styles.fixedLinks}>
             <TouchableOpacity onPress={() => handleNavigate('ajuda')}>
               <Text style={styles.navLink}>Ajuda</Text>
@@ -97,7 +97,7 @@ export default function Home() {
           </View>
         </View>
 
-        {/* 📌 Cards */}
+        {/*  Cards */}
         <View style={styles.card}>
           <Image source={require('../IMG/tiVerde.webp')} style={styles.cardImage} resizeMode="cover" />
           <Text style={styles.cardTitle}>TI Verde</Text>
@@ -140,7 +140,7 @@ export default function Home() {
           </TouchableOpacity>
         </View>
 
-        {/* 👥 Carrossel da Equipe */}
+        {/*  Carrossel da Equipe */}
         <View style={styles.equipeContainer}>
           <Text style={styles.equipeTitulo}>Nossa Equipe</Text>
           <FlatList
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
-  dropdownItem: { paddingVertical: 6, fontSize: 14, color: '#357447', fontWeight: '600' },
+  dropdownItem: { paddingVertical: 6, fontSize: 14, color: '#357447', fontWeight: '600',width:125 },
 
   card: {
     width: '70%',
@@ -251,15 +251,15 @@ const styles = StyleSheet.create({
   equipeTitulo: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, marginTop: 10, color: '#357447', textAlign: 'center' },
   equipeCard: {
     width: 220,
-    backgroundColor: '#79c77c',
+    backgroundColor: '#2d5a36',
     borderRadius: 10,
     padding: 15,
     marginRight: 10,
     alignItems: 'center',
   },
   equipeFoto: { width: 100, height: 100, borderRadius: 50, marginBottom: 10 },
-  equipeNome: { fontWeight: 'bold', fontSize: 16, marginBottom: 5, textAlign: 'center' },
-  equipeFuncao: { fontSize: 14, color: '#555', textAlign: 'center' },
+  equipeNome: { fontWeight: 'bold', fontSize: 16, marginBottom: 5, textAlign: 'center',color:'white' },
+  equipeFuncao: { fontSize: 14, color: '#ffffffff', textAlign: 'center' },
 
   footer: { alignItems: 'center', paddingVertical: 20, backgroundColor: '#2d5a36', width: '100%', marginTop: 40 },
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white' },

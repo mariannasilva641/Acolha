@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
-  dropdownItem: { paddingVertical: 6, fontSize: 14, color: '#357447', fontWeight: '600' },
+  dropdownItem: { paddingVertical: 6, fontSize: 14, color: '#357447', fontWeight: '600',width:95 },
 
   card: {
     width: '70%',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, 
-  Image, Modal, ImageBackground, Linking 
+  Image, Modal, ImageBackground, Linking, Picker, Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,11 +10,24 @@ export default function Login() {
   const [senha, setSenha] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [sugestao, setSugestao] = useState('');
+  const [tipoPessoa, setTipoPessoa] = useState('fisica');  // Estado para controlar a escolha entre PF e PJ
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    console.log('Tentando login com:', { usuario, senha });
-    navigation.navigate('home'); 
+    // Verificar se todos os campos estão preenchidos
+    if (!usuario || !senha || !tipoPessoa) {
+      // Exibir uma mensagem de erro caso algum campo esteja vazio
+      Alert.alert('Erro', 'Por favor, preencha todos os campos antes de acessar!', [{ text: 'OK' }]);
+      return;
+    }
+    
+    // Caso todos os campos estejam preenchidos, realizar o login
+    console.log('Tentando login com:', { usuario, senha, tipoPessoa });
+    if (tipoPessoa === 'fisica') {
+      navigation.navigate('perfilPF');  // Navegar para o perfil Pessoa Física
+    } else {
+      navigation.navigate('perfilPJ');  // Navegar para o perfil Pessoa Jurídica
+    }
   };
 
   const handleCadastroPF = () => {
@@ -37,7 +50,7 @@ export default function Login() {
         <View style={styles.content}>
           {/* Logo */}
           <View style={styles.logoContainer}>
-            <Image source={require('../IMG/width_500.webp')} style={styles.logo} />
+            <Image source={require('../IMG/logotipo_acolha 1_fundo(1).png')} style={styles.logo} />
           </View>
 
           {/* Formulário de login */}
@@ -55,6 +68,19 @@ export default function Login() {
               onChangeText={setSenha}
               secureTextEntry
             />
+
+            {/* Seletor de Pessoa Física ou Jurídica */}
+            <View style={styles.pickerContainer}>
+              <Text style={styles.pickerLabel}>Tipo de Pessoa</Text>
+              <Picker
+                selectedValue={tipoPessoa}
+                style={styles.picker}
+                onValueChange={(itemValue) => setTipoPessoa(itemValue)}
+              >
+                <Picker.Item label="Pessoa Física" value="fisica" />
+                <Picker.Item label="Pessoa Jurídica" value="juridica" />
+              </Picker>
+            </View>
 
             <View style={styles.linksContainer}>
               <Text style={styles.link} onPress={() => console.log('Esqueci minha senha')}>
@@ -139,7 +165,6 @@ export default function Login() {
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
             </TouchableOpacity>
-          
           </View>
 
           <Text style={styles.footerCopyright}>
@@ -157,7 +182,7 @@ const styles = StyleSheet.create({
   content: { flex: 1, alignItems: 'center' },
 
   logoContainer: { alignItems: 'center', marginBottom: 10, marginTop: 20 },
-  logo: { width: 200, height: 150, resizeMode: 'contain' },
+  logo: { width: 150, height: 150, borderRadius: 15 },
 
   card: { 
     width: '90%', 
@@ -169,18 +194,18 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 }, 
     shadowRadius: 4,
     marginBottom: 20,
-    marginTop:40,
+    marginTop: 40,
   },
   input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 10, marginVertical: 10 },
   linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
-  link: { color: '#357447', textDecorationLine: 'underline', fontSize: 12 },
+  link: { color: '#357447', textDecorationLine: 'underline', fontSize: 12, marginTop:12 },
   botao: { backgroundColor: '#357447', padding: 15, borderRadius: 6, alignItems: 'center' },
   botaoTexto: { color: '#fff', fontWeight: 'bold' },
   voltarBotao: { marginTop: 15, alignItems: 'center' },
   voltarTexto: { color: '#357447', fontWeight: 'bold' },
 
   footer: {
-    marginTop:80,
+    marginTop: 80,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 25,
@@ -203,8 +228,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
     height: 41,
     color: 'white',
-    marginTop:15,
-    marginBottom:15
+    marginTop: 15,
+    marginBottom: 15
   },
   inputButton: {
     backgroundColor: '#255736',
@@ -212,8 +237,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
     height: 41,
+    width:41
   },
-  inputButtonText: { color: 'white', fontWeight: 'bold' },
+  inputButtonText: { color: 'white', fontWeight: 'bold',paddingRight: 45},
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
   footerCopyright: {
@@ -228,8 +254,32 @@ const styles = StyleSheet.create({
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
   modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },
   modalTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
-  modalOption: { backgroundColor: '#357447', width: '100%', padding: 15, borderRadius: 6, marginBottom: 10, alignItems: 'center' },
+  modalOption: { backgroundColor: '#357447', width: '100%', padding: 15, borderRadius: 6, marginBottom: 6, alignItems: 'center' },
   modalOptionText: { color: 'white', fontWeight: 'bold', fontSize: 14 },
-  modalClose: { marginTop: 5 },
+  modalClose: { marginTop: 3},
   modalCloseText: { color: '#357447', fontWeight: 'bold' },
+
+  pickerContainer: {
+    marginTop: 25,  // Espaçamento superior
+    width: '100%',  // Garantir que o Picker ocupe toda a largura
+  },
+
+  pickerLabel: {
+    color: '#357447',  // Cor do label
+    fontSize: 14,  // Tamanho do texto do label
+    fontWeight: 'bold',  // Negrito
+    marginBottom: 20,  // Espaço entre o label e o Picker
+  },
+
+  picker: {
+    height: 50,  // Altura do Picker
+    width: '100%',  // Ocupa toda a largura disponível
+    borderWidth: 1,  // Borda similar aos outros campos
+    borderColor: '#ccc',  // Cor da borda
+    borderRadius: 6,  // Bordas arredondadas
+    paddingLeft: 10,  // Padding à esquerda, igual aos outros inputs
+    color: '#000',  // Cor do texto dentro do Picker
+    justifyContent: 'center',  // Centraliza o conteúdo
+    paddingRight: 90,  // Espaço à direita para a seta
+  },
 });
