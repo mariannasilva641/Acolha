@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
     color: 'white', 
     fontSize: 12, 
     textAlign: 'center', 
-    marginTop: 10 
+    marginTop: 10,
+    fontWeight: 'bold'
   },
 });

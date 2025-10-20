@@ -267,5 +267,5 @@ const styles = StyleSheet.create({
   footerInfo: { textAlign: 'center', color: 'white', marginVertical: 2 },
   socialContainer: { flexDirection: 'row', marginTop: 10 },
   socialIcon: { width: 30, height: 30, marginHorizontal: 8 },
-  footerCopyright: { color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 10 },
+  footerCopyright: { color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold' },
 });

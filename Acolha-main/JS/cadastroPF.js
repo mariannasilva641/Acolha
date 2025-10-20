@@ -274,5 +274,5 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold' },
 });

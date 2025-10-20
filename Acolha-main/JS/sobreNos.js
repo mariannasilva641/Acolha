@@ -87,7 +87,7 @@ export default function SobreNos() {
 
         {/* 📄 Conteúdo */}
         <View style={styles.contentContainer}>
-          <Image source={require('../IMG/CivitasTech.png')} style={styles.sectionImage} />
+          <Image source={require('../IMG/logoCivitascomFundo.jpeg')} style={styles.sectionImage} />
           <Text style={styles.title}>Histórico:</Text>
           <Text style={styles.text}>
             A história do projeto <Text style={styles.bold}>Acolha</Text>, desenvolvido pela empresa <Text style={styles.bold}>Civitas Tech</Text>, teve início no dia <Text style={styles.bold}>10 de fevereiro</Text>, quando a equipe responsável pelo Trabalho de Conclusão de Curso foi oficialmente formada.
@@ -101,7 +101,7 @@ export default function SobreNos() {
             A fundação oficial da empresa ocorreu em <Text style={styles.bold}>03 de março</Text>. <Text style={styles.bold}>Inicialmente o projeto era apenas um TCC, mas hoje é uma empresa real</Text>.
           </Text>
 
-          <Image source={require('../IMG/width_500.webp')} style={styles.sectionImage} />
+          <Image source={require('../IMG/logotipo_acolha 1_fundo(1).png')} style={styles.sectionImage} />
           <Text style={styles.title}>Descrição Sobre a Empresa:</Text>
           <Text style={styles.text}>
             A <Text style={styles.bold}>CivitasTech</Text> aplica tecnologia para promover <Text style={styles.bold}>inclusão social</Text>, especialmente no acolhimento de imigrantes e refugiados.
@@ -121,7 +121,7 @@ export default function SobreNos() {
           </View>
         </View>
 
-        {/* 🦶 Footer */}
+        {/*Footer*/}
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>Acolha</Text>
           <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    overflowX: 'hidden',  // Força que o conteúdo não vaze horizontalmente
   },
   navbar: {
     width: '100%',
@@ -214,9 +215,9 @@ const styles = StyleSheet.create({
   },
 
   contentContainer: { width: '85%', marginTop: 20 },
-  sectionImage: { width: '100%', height: 250, borderRadius: 12, marginBottom: 20, marginTop: 20 },
-  title: { fontSize: 18, fontWeight: 'bold', color: '#357447', marginBottom: 10, marginTop: 20 },
-  text: { fontSize: 16, color: 'black', textAlign: 'justify', lineHeight: 22, marginBottom: 10 },
+  sectionImage: { width: '100%', height: 250, resizeMode: 'contain', borderRadius: 16, marginBottom: 2, marginTop: 20 },
+  title: { fontSize: 18, fontWeight: 'bold', color: '#357447', marginBottom: 10, marginTop: 10 },
+  text: { fontSize: 16, color: 'black', textAlign: 'justify', lineHeight: 22, marginBottom: 25 },
   bold: { fontWeight: 'bold', color: 'black' },
   topicContainer: { marginLeft: 15, marginBottom: 15 },
 
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
-  inputGroup: { flexDirection: 'row', marginTop: 15,marginBottom:15, width: '70%' },
+  inputGroup: { flexDirection: 'row', marginTop: 15, marginBottom: 15, width: '70%' },
   input: {
     backgroundColor: 'transparent',
     borderWidth: 1,
@@ -248,5 +249,5 @@ const styles = StyleSheet.create({
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10, borderRadius: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold'},
 });

@@ -250,5 +250,5 @@ const styles = StyleSheet.create({
 
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10, borderRadius: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold' },
 });

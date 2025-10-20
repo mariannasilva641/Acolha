@@ -139,6 +139,7 @@ export default function Login() {
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
             </TouchableOpacity>
+          
           </View>
 
           <Text style={styles.footerCopyright}>
@@ -221,6 +222,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 5,
+    fontWeight: 'bold'
   },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
