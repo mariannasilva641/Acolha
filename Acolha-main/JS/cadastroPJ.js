@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, Image, Linking, SafeAreaView, KeyboardAvoidingView, Platform, ImageBackground } from "react-native";
+import { 
+  View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, 
+  Image, Linking, SafeAreaView, KeyboardAvoidingView, Platform, 
+  ImageBackground 
+} from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from '../App.js'; // onde você criou o toastConfig
 
 export default function CadastroPJ() {
   const navigation = useNavigation();
@@ -16,6 +22,7 @@ export default function CadastroPJ() {
   const [cargo, setCargo] = useState('');
   const [areaAtuacao, setAreaAtuacao] = useState('');
   const [mensagem, setMensagem] = useState('');
+  const [sugestao, setSugestao] = useState(''); // para sugestão no footer
 
   // Estados de erro
   const [errorNome, setErrorNome] = useState('');
@@ -35,43 +42,24 @@ export default function CadastroPJ() {
   }
 
   function validarCNPJ(cnpj) {
-    const cnpjLimpo = cnpj.replace(/[^\d]+/g,'');
+    const cnpjLimpo = cnpj.replace(/[^\d]+/g, '');
     return cnpjLimpo.length === 14;
   }
 
   function validarFormulario() {
     let valido = true;
 
-    if (nome.trim() === '') {
-      setErrorNome('Por favor, preencha o nome.');
-      valido = false;
-    } else {
-      setErrorNome('');
-    }
-
-    if (email.trim() === '') {
-      setErrorEmail('Por favor, preencha o email.');
-      valido = false;
-    } else {
-      setErrorEmail('');
-    }
-
-    if (emailDomain.trim() === '') {
-      setErrorEmailDomain('Por favor, preencha o domínio.');
-      valido = false;
-    } else {
-      setErrorEmailDomain('');
-    }
+    if (nome.trim() === '') { setErrorNome('Por favor, preencha o nome.'); valido = false; } else setErrorNome('');
+    if (email.trim() === '') { setErrorEmail('Por favor, preencha o email.'); valido = false; } else setErrorEmail('');
+    if (emailDomain.trim() === '') { setErrorEmailDomain('Por favor, preencha o domínio.'); valido = false; } else setErrorEmailDomain('');
 
     if (email.trim() !== '' && emailDomain.trim() !== '') {
       const emailCompleto = email.trim() + emailDomain.trim();
       if (!validarEmail(emailCompleto)) {
         setErrorEmail('Email inválido.');
-        setErrorEmailDomain('');
         valido = false;
       } else {
         setErrorEmail('');
-        setErrorEmailDomain('');
       }
     }
 
@@ -95,40 +83,11 @@ export default function CadastroPJ() {
       setErrorCnpj('');
     }
 
-    if (telefone.trim() === '') {
-      setErrorTelefone('Por favor, preencha o telefone.');
-      valido = false;
-    } else {
-      setErrorTelefone('');
-    }
-
-    if (nomeRepresentante.trim() === '') {
-      setErrorNomeRepresentante('Por favor, preencha o nome do representante.');
-      valido = false;
-    } else {
-      setErrorNomeRepresentante('');
-    }
-
-    if (cargo.trim() === '') {
-      setErrorCargo('Por favor, preencha o cargo.');
-      valido = false;
-    } else {
-      setErrorCargo('');
-    }
-
-    if (areaAtuacao.trim() === '') {
-      setErrorAreaAtuacao('Por favor, preencha a área de atuação.');
-      valido = false;
-    } else {
-      setErrorAreaAtuacao('');
-    }
-
-    if (mensagem.trim() === '') {
-      setErrorMensagem('Por favor, preencha a mensagem.');
-      valido = false;
-    } else {
-      setErrorMensagem('');
-    }
+    if (telefone.trim() === '') { setErrorTelefone('Por favor, preencha o telefone.'); valido = false; } else setErrorTelefone('');
+    if (nomeRepresentante.trim() === '') { setErrorNomeRepresentante('Por favor, preencha o nome do representante.'); valido = false; } else setErrorNomeRepresentante('');
+    if (cargo.trim() === '') { setErrorCargo('Por favor, preencha o cargo.'); valido = false; } else setErrorCargo('');
+    if (areaAtuacao.trim() === '') { setErrorAreaAtuacao('Por favor, preencha a área de atuação.'); valido = false; } else setErrorAreaAtuacao('');
+    if (mensagem.trim() === '') { setErrorMensagem('Por favor, preencha a mensagem.'); valido = false; } else setErrorMensagem('');
 
     return valido;
   }
@@ -146,8 +105,51 @@ export default function CadastroPJ() {
         areaAtuacao,
         mensagem,
       };
-      navigation.navigate('perfilPJ', dados);
+
+      Toast.show({
+        type: 'success',
+        text1: 'Cadastro realizado com sucesso!',
+        text2: 'Você será encaminhado...',
+        position: 'top',
+        visibilityTime: 2000,
+      });
+
+      setTimeout(() => {
+        navigation.navigate('perfilPJ', dados);
+      }, 2000);
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: 'Campos obrigatórios',
+        text2: 'Por favor, verifique os campos e tente novamente.',
+        position: 'top',
+        visibilityTime: 3000,
+      });
     }
+  }
+
+  function handleEnviarSugestao() {
+    if (sugestao.trim() === '') {
+      Toast.show({
+        type: 'error',
+        text1: 'Sugestão vazia',
+        text2: 'Por favor, escreva uma sugestão antes de enviar.',
+        position: 'top',
+        visibilityTime: 2000,
+      });
+      return;
+    }
+
+    // Aqui você pode fazer a lógica para enviar a sugestão para backend ou API
+    Toast.show({
+      type: 'success',
+      text1: 'Sugestão enviada',
+      text2: 'Obrigado pela sua contribuição!',
+      position: 'top',
+      visibilityTime: 2000,
+    });
+
+    setSugestao('');
   }
 
   return (
@@ -172,19 +174,14 @@ export default function CadastroPJ() {
               <Text style={styles.titulo}>Cadastro - Pessoa Jurídica</Text>
 
               <View style={styles.card}>
-                <TextInput 
-                  style={styles.input} 
-                  placeholder="Nome" 
-                  value={nome}
-                  onChangeText={setNome}
-                />
+                <TextInput style={styles.input} placeholder="Nome" value={nome} onChangeText={setNome} />
                 {errorNome ? <Text style={styles.errorText}>{errorNome}</Text> : null}
 
                 <View style={styles.row}>
                   <View style={{ flex: 2 }}>
-                    <TextInput 
-                      style={[styles.inputFlex2, { marginBottom: errorEmail ? 0 : 8 }]} 
-                      placeholder="Email" 
+                    <TextInput
+                      style={styles.inputFlex2}
+                      placeholder="Email"
                       value={email}
                       onChangeText={setEmail}
                       keyboardType="email-address"
@@ -192,11 +189,10 @@ export default function CadastroPJ() {
                     />
                     {errorEmail ? <Text style={styles.errorText}>{errorEmail}</Text> : null}
                   </View>
-
                   <View style={{ flex: 1 }}>
-                    <TextInput 
-                      style={[styles.inputFlex1, { marginBottom: errorEmailDomain ? 0 : 8 }]} 
-                      placeholder="@gmail.com" 
+                    <TextInput
+                      style={styles.inputFlex1}
+                      placeholder="@gmail.com"
                       value={emailDomain}
                       onChangeText={setEmailDomain}
                       autoCapitalize="none"
@@ -205,28 +201,28 @@ export default function CadastroPJ() {
                   </View>
                 </View>
 
-                <TextInput 
-                  style={styles.input} 
-                  placeholder="Senha" 
-                  secureTextEntry 
+                <TextInput
+                  style={styles.input}
+                  placeholder="Senha"
+                  secureTextEntry
                   value={senha}
                   onChangeText={setSenha}
                 />
                 {errorSenha ? <Text style={styles.errorText}>{errorSenha}</Text> : null}
 
-                <TextInput 
-                  style={styles.input} 
-                  placeholder="CNPJ" 
+                <TextInput
+                  style={styles.input}
+                  placeholder="CNPJ"
                   value={cnpj}
                   onChangeText={setCnpj}
                   keyboardType="number-pad"
                 />
                 {errorCnpj ? <Text style={styles.errorText}>{errorCnpj}</Text> : null}
 
-                <TextInput 
-                  style={styles.input} 
-                  placeholder="Telefone" 
-                  keyboardType="phone-pad" 
+                <TextInput
+                  style={styles.input}
+                  placeholder="Telefone"
+                  keyboardType="phone-pad"
                   value={telefone}
                   onChangeText={setTelefone}
                 />
@@ -234,19 +230,18 @@ export default function CadastroPJ() {
 
                 <View style={styles.row}>
                   <View style={{ flex: 2 }}>
-                    <TextInput 
-                      style={[styles.inputFlex2, { marginBottom: errorNomeRepresentante ? 0 : 8 }]} 
-                      placeholder="Nome do Representante" 
+                    <TextInput
+                      style={styles.inputFlex2}
+                      placeholder="Nome do Representante"
                       value={nomeRepresentante}
                       onChangeText={setNomeRepresentante}
                     />
                     {errorNomeRepresentante ? <Text style={styles.errorText}>{errorNomeRepresentante}</Text> : null}
                   </View>
-
                   <View style={{ flex: 1 }}>
-                    <TextInput 
-                      style={[styles.inputFlex1, { marginBottom: errorCargo ? 0 : 8 }]} 
-                      placeholder="Cargo" 
+                    <TextInput
+                      style={styles.inputFlex1}
+                      placeholder="Cargo"
                       value={cargo}
                       onChangeText={setCargo}
                     />
@@ -254,19 +249,19 @@ export default function CadastroPJ() {
                   </View>
                 </View>
 
-                <TextInput 
-                  style={[styles.input, { height: 80 }]} 
-                  placeholder="Área de Atuação" 
-                  multiline 
+                <TextInput
+                  style={[styles.input, { height: 80 }]}
+                  placeholder="Área de Atuação"
+                  multiline
                   value={areaAtuacao}
                   onChangeText={setAreaAtuacao}
                 />
                 {errorAreaAtuacao ? <Text style={styles.errorText}>{errorAreaAtuacao}</Text> : null}
 
-                <TextInput 
-                  style={[styles.input, { height: 100 }]} 
-                  placeholder="Mensagem" 
-                  multiline 
+                <TextInput
+                  style={[styles.input, { height: 100 }]}
+                  placeholder="Mensagem"
+                  multiline
                   value={mensagem}
                   onChangeText={setMensagem}
                 />
@@ -297,8 +292,10 @@ export default function CadastroPJ() {
                     multiline
                     numberOfLines={4}
                     textAlignVertical="top"
+                    value={sugestao}
+                    onChangeText={setSugestao}
                   />
-                  <TouchableOpacity style={styles.inputButton}>
+                  <TouchableOpacity style={styles.inputButton} onPress={handleEnviarSugestao}>
                     <Text style={styles.inputButtonText}>➤</Text>
                   </TouchableOpacity>
                 </View>
@@ -308,17 +305,20 @@ export default function CadastroPJ() {
                 <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
                   <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
                 </TouchableOpacity>
-                 <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
-                   <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
-                 </TouchableOpacity>      
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
+                  <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
+                </TouchableOpacity>
               </View>
 
               <Text style={styles.footerCopyright}>
-                 © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
+                © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
               </Text>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+
+        {/* Toast precisa estar no topo do componente para funcionar */}
+        <Toast config={toastConfig} />
       </ImageBackground>
     </SafeAreaView>
   );
@@ -326,7 +326,7 @@ export default function CadastroPJ() {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: "#E5E5E5" },
-  scrollContainer: { paddingBottom: 0, alignItems: 'center' },
+  scrollContainer: { paddingBottom: 20, alignItems: 'center' },
   content: { width: '100%', alignItems: 'center' },
   titulo: { fontSize: 24, fontWeight: "bold", color: "#357447", marginVertical: 20, textAlign: "center" },
   card: { width: "90%", backgroundColor: "white", padding: 20, borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 5, elevation: 5 },
@@ -338,13 +338,7 @@ const styles = StyleSheet.create({
   botaoTexto: { color: "white", fontWeight: "bold" },
   botaoVoltar: { alignSelf: 'flex-start', marginLeft: 20, marginBottom: 10, marginTop: 20, backgroundColor: '#357447', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 6 },
   textoVoltar: { color: '#fff', fontWeight: 'bold' },
-  footer: { 
-    width: '100%', 
-    backgroundColor: '#357447', 
-    alignItems: 'center', 
-    paddingVertical: 25, 
-    marginTop: 70,
-  },
+  footer: { width: '100%', backgroundColor: '#357447', alignItems: 'center', paddingVertical: 25, marginTop: 70 },
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
   footerText: { color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
@@ -356,21 +350,7 @@ const styles = StyleSheet.create({
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
-  errorText: {
-    color: 'red',
-    marginBottom: 8,
-    fontSize: 12,
-  },
-  footerCopyright: { 
-    color: 'white', 
-    fontSize: 12, 
-    textAlign: 'center', 
-    marginTop: 10,
-    fontWeight: 'bold'
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
+  errorText: { color: 'red', marginBottom: 8, fontSize: 12 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10, fontWeight: 'bold' },
+  backgroundImage: { flex: 1, width: '100%', height: '100%' },
 });

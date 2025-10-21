@@ -9,7 +9,7 @@ export default function Home() {
   const navigation = useNavigation();
   const [menuAberto, setMenuAberto] = useState(false);
 
-  // 📌 Animação do menu
+  //Animação do menu
   const menuAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {

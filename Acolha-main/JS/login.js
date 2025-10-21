@@ -1,33 +1,47 @@
 import React, { useState } from 'react';
 import { 
   View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, 
-  Image, Modal, ImageBackground, Linking, Picker, Alert
+  Image, Modal, ImageBackground, Linking, Picker
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 export default function Login() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [sugestao, setSugestao] = useState('');
-  const [tipoPessoa, setTipoPessoa] = useState('fisica');  // Estado para controlar a escolha entre PF e PJ
+  const [tipoPessoa, setTipoPessoa] = useState('fisica'); // valor inicial
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Verificar se todos os campos estão preenchidos
-    if (!usuario || !senha || !tipoPessoa) {
-      // Exibir uma mensagem de erro caso algum campo esteja vazio
-      Alert.alert('Erro', 'Por favor, preencha todos os campos antes de acessar!', [{ text: 'OK' }]);
+    if (!usuario || !senha) {
+      Toast.show({
+        type: 'error',
+        text1: 'Erro',
+        text2: 'Por favor, preencha todos os campos antes de acessar!',
+        position: 'top',
+        visibilityTime: 2500,
+      });
       return;
     }
-    
-    // Caso todos os campos estejam preenchidos, realizar o login
-    console.log('Tentando login com:', { usuario, senha, tipoPessoa });
-    if (tipoPessoa === 'fisica') {
-      navigation.navigate('perfilPF');  // Navegar para o perfil Pessoa Física
-    } else {
-      navigation.navigate('perfilPJ');  // Navegar para o perfil Pessoa Jurídica
-    }
+
+    // Toast único para ambos os tipos
+    Toast.show({
+      type: 'success',
+      text1: 'Login realizado!',
+      text2: `Bem-vindo(a)!`,
+      position: 'top',
+      visibilityTime: 2000,
+    });
+
+    setTimeout(() => {
+      if (tipoPessoa === 'fisica') {
+        navigation.navigate('perfilPF');
+      } else {
+        navigation.navigate('perfilPJ');
+      }
+    }, 2000);
   };
 
   const handleCadastroPF = () => {
@@ -42,18 +56,12 @@ export default function Login() {
 
   return (
     <ImageBackground source={require('../IMG/FundoAcolha.png')} style={styles.background}>
-      <ScrollView 
-        contentContainerStyle={styles.scrollContainer} 
-        showsVerticalScrollIndicator={false} 
-        bounces={false}
-      >
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false} bounces={false}>
         <View style={styles.content}>
-          {/* Logo */}
           <View style={styles.logoContainer}>
             <Image source={require('../IMG/logotipo_acolha 1_fundo(1).png')} style={styles.logo} />
           </View>
 
-          {/* Formulário de login */}
           <View style={styles.card}>
             <TextInput
               style={styles.input}
@@ -69,7 +77,6 @@ export default function Login() {
               secureTextEntry
             />
 
-            {/* Seletor de Pessoa Física ou Jurídica */}
             <View style={styles.pickerContainer}>
               <Text style={styles.pickerLabel}>Tipo de Pessoa</Text>
               <Picker
@@ -83,12 +90,15 @@ export default function Login() {
             </View>
 
             <View style={styles.linksContainer}>
-              <Text style={styles.link} onPress={() => console.log('Esqueci minha senha')}>
+              <Text style={styles.link} onPress={() => Toast.show({
+                type: 'error',
+                text1: 'Recuperação de senha',
+                text2: 'Função ainda não implementada.',
+                position: 'top',
+              })}>
                 Esqueci minha senha
               </Text>
-              <Text style={styles.link} onPress={() => setModalVisible(true)}>
-                Criar conta
-              </Text>
+              <Text style={styles.link} onPress={() => setModalVisible(true)}>Criar conta</Text>
             </View>
 
             <TouchableOpacity style={styles.botao} onPress={handleLogin}>
@@ -100,7 +110,6 @@ export default function Login() {
             </TouchableOpacity>
           </View>
 
-          {/* Modal para escolher PF ou PJ */}
           <Modal
             visible={modalVisible}
             transparent
@@ -110,15 +119,12 @@ export default function Login() {
             <View style={styles.modalOverlay}>
               <View style={styles.modalContent}>
                 <Text style={styles.modalTitle}>Escolha o tipo de cadastro</Text>
-
                 <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPF}>
                   <Text style={styles.modalOptionText}>Pessoa Física</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPJ}>
                   <Text style={styles.modalOptionText}>Pessoa Jurídica</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity style={styles.modalClose} onPress={() => setModalVisible(false)}>
                   <Text style={styles.modalCloseText}>Cancelar</Text>
                 </TouchableOpacity>
@@ -127,19 +133,16 @@ export default function Login() {
           </Modal>
         </View>
 
-        {/* Rodapé */}
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>Acolha</Text>
           <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
 
-          {/* Sugestões */}
           <View style={styles.subscribe}>
             <Text style={styles.subscribeTitle}>Sugestões</Text>
             <Text style={styles.subscribeText}>
               Envie aqui suas sugestões, dúvidas ou críticas.{"\n"}
               Sua opinião é muito importante para nós!
             </Text>
-
             <View style={styles.inputGroup}>
               <TextInput
                 placeholder="Sua Sugestão"
@@ -157,7 +160,6 @@ export default function Login() {
             </View>
           </View>
 
-          {/* Redes sociais */}
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
               <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
@@ -204,52 +206,19 @@ const styles = StyleSheet.create({
   voltarBotao: { marginTop: 15, alignItems: 'center' },
   voltarTexto: { color: '#357447', fontWeight: 'bold' },
 
-  footer: {
-    marginTop: 80,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 25,
-    backgroundColor: '#357447',
-    width: '100%',
-  },
+  footer: { marginTop: 80, alignItems: 'center', justifyContent: 'center', paddingVertical: 25, backgroundColor: '#357447', width: '100%' },
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
   footerText: { color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
   inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
-  inputSugestao: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    flex: 1,
-    marginRight: 5,
-    height: 41,
-    color: 'white',
-    marginTop: 15,
-    marginBottom: 15
-  },
-  inputButton: {
-    backgroundColor: '#255736',
-    paddingHorizontal: 15,
-    justifyContent: 'center',
-    borderRadius: 5,
-    height: 41,
-    width:41
-  },
+  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white', marginTop: 15, marginBottom: 15 },
+  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41, width:41 },
   inputButtonText: { color: 'white', fontWeight: 'bold',paddingRight: 45},
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
   socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
-  footerCopyright: {
-    color: 'white',
-    fontSize: 12,
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 5,
-    fontWeight: 'bold'
-  },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10, marginBottom: 5, fontWeight: 'bold' },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
   modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },
@@ -259,27 +228,7 @@ const styles = StyleSheet.create({
   modalClose: { marginTop: 3},
   modalCloseText: { color: '#357447', fontWeight: 'bold' },
 
-  pickerContainer: {
-    marginTop: 25,  // Espaçamento superior
-    width: '100%',  // Garantir que o Picker ocupe toda a largura
-  },
-
-  pickerLabel: {
-    color: '#357447',  // Cor do label
-    fontSize: 14,  // Tamanho do texto do label
-    fontWeight: 'bold',  // Negrito
-    marginBottom: 20,  // Espaço entre o label e o Picker
-  },
-
-  picker: {
-    height: 50,  // Altura do Picker
-    width: '100%',  // Ocupa toda a largura disponível
-    borderWidth: 1,  // Borda similar aos outros campos
-    borderColor: '#ccc',  // Cor da borda
-    borderRadius: 6,  // Bordas arredondadas
-    paddingLeft: 10,  // Padding à esquerda, igual aos outros inputs
-    color: '#000',  // Cor do texto dentro do Picker
-    justifyContent: 'center',  // Centraliza o conteúdo
-    paddingRight: 90,  // Espaço à direita para a seta
-  },
+  pickerContainer: { marginTop: 25, width: '100%' },
+  pickerLabel: { color: '#357447', fontSize: 14, fontWeight: 'bold', marginBottom: 20 },
+  picker: { height: 50, width: '100%', borderWidth: 1, borderColor: '#ccc', borderRadius: 6, paddingLeft: 10, color: '#000', justifyContent: 'center', paddingRight: 90 },
 });

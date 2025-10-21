@@ -14,7 +14,7 @@ export default function PerfilPJ() {
     senha = "123456",
     cnpj = "00.000.000/0001-00",
     telefone = "(11) 99999-9999",
-    nomeRepresentante = "João Silva",
+    nomeRepresentante = "João",
     cargo = "CEO",
     areaAtuacao = "Tecnologia",
     mensagem = "Nossa missão é inovar.",
