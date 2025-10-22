@@ -155,7 +155,7 @@ export default function ProjetosSociais() {
 
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-              <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+              <Image source={require('../IMG/instragam.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
-  inputGroup: { flexDirection: 'row', marginTop: 15, marginBottom: 15, width: '70%' },
+  inputGroup: { flexDirection: 'row', marginTop: 15, marginBottom: 1, width: '70%' },
   input: {
     backgroundColor: 'transparent',
     borderWidth: 1,
@@ -249,6 +249,6 @@ const styles = StyleSheet.create({
   inputButtonText: { color: 'white', fontWeight: 'bold' },
 
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
-  socialIcon: { width: 35, height: 35, marginHorizontal: 10, borderRadius: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold' },
+  socialIcon: { width: 50, height: 50, marginHorizontal:0.2, borderRadius: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5,fontWeight: 'bold' },
 });

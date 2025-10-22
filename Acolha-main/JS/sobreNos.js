@@ -9,7 +9,7 @@ export default function SobreNos() {
   const navigation = useNavigation();
   const [menuAberto, setMenuAberto] = useState(false);
 
-  // 🎭 Animação do dropdown
+  //  Animação do dropdown
   const menuAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function SobreNos() {
 
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-              <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+              <Image source={require('../IMG/instragam.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
 
   contentContainer: { width: '85%', marginTop: 20 },
   sectionImage: { width: '100%', height: 250, resizeMode: 'contain', borderRadius: 16, marginBottom: 2, marginTop: 20 },
-  title: { fontSize: 18, fontWeight: 'bold', color: '#357447', marginBottom: 10, marginTop: 10 },
+  title: { fontSize: 18, fontWeight: 'bold', color: '#357447', marginBottom: 10, marginTop: 10,backgroundColor:'#FFFFFF',borderRadius:5 },
   text: { fontSize: 16, color: 'black', textAlign: 'justify', lineHeight: 22, marginBottom: 25 },
   bold: { fontWeight: 'bold', color: 'black' },
   topicContainer: { marginLeft: 15, marginBottom: 15 },
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
-  inputGroup: { flexDirection: 'row', marginTop: 15, marginBottom: 15, width: '70%' },
+  inputGroup: { flexDirection: 'row', marginTop: 2, marginBottom: 15, width: '70%' },
   input: {
     backgroundColor: 'transparent',
     borderWidth: 1,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   },
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5,width:41,height:41 },
   inputButtonText: { color: 'white', fontWeight: 'bold' },
-  socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
-  socialIcon: { width: 35, height: 35, marginHorizontal: 10, borderRadius: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold'},
+  socialContainer: { flexDirection: 'row', marginTop: 1, justifyContent: 'center' },
+  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2, borderRadius: 10 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5,fontWeight: 'bold'},
 });

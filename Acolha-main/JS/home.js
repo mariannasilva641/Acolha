@@ -56,7 +56,7 @@ export default function Home() {
 
   return (
     <ImageBackground
-      source={require('../IMG/FundoCadastro.jpeg')}
+      source={require('../IMG/FundoAcolha.png')}
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator>
@@ -169,7 +169,7 @@ export default function Home() {
 
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-              <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+              <Image source={require('../IMG/instragam.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => Linking.openURL('mailto:acolha2025@gmail.com.br')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white' },
   footerText: { textAlign: 'center', marginVertical: 5, color: 'white' },
   footerInfo: { textAlign: 'center', color: 'white', marginVertical: 2 },
-  socialContainer: { flexDirection: 'row', marginTop: 10 },
-  socialIcon: { width: 30, height: 30, marginHorizontal: 8 },
-  footerCopyright: { color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 10,fontWeight: 'bold' },
+  socialContainer: { flexDirection: 'row', marginTop: 2 },
+  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  footerCopyright: { color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 5,fontWeight: 'bold' },
 });

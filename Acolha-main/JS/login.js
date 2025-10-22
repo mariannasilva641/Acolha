@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { 
-  View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, 
+import {
+  View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView,
   Image, Modal, ImageBackground, Linking, Picker
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -11,7 +11,7 @@ export default function Login() {
   const [senha, setSenha] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [sugestao, setSugestao] = useState('');
-  const [tipoPessoa, setTipoPessoa] = useState('fisica'); // valor inicial
+  const [tipoPessoa, setTipoPessoa] = useState('fisica');
   const navigation = useNavigation();
 
   const handleLogin = () => {
@@ -26,7 +26,6 @@ export default function Login() {
       return;
     }
 
-    // Toast único para ambos os tipos
     Toast.show({
       type: 'success',
       text1: 'Login realizado!',
@@ -46,23 +45,24 @@ export default function Login() {
 
   const handleCadastroPF = () => {
     setModalVisible(false);
-    navigation.navigate('cadastroPF'); 
+    navigation.navigate('cadastroPF');
   };
 
   const handleCadastroPJ = () => {
     setModalVisible(false);
-    navigation.navigate('cadastroPJ'); 
+    navigation.navigate('cadastroPJ');
   };
 
   return (
     <ImageBackground source={require('../IMG/FundoAcolha.png')} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false} bounces={false}>
         <View style={styles.content}>
-          <View style={styles.logoContainer}>
-            <Image source={require('../IMG/logotipo_acolha 1_fundo(1).png')} style={styles.logo} />
-          </View>
-
           <View style={styles.card}>
+            {/* LOGO DENTRO DO CARD */}
+            <View style={styles.logoContainer}>
+              <Image source={require('../IMG/width_500.webp')} style={styles.logo} />
+            </View>
+
             <TextInput
               style={styles.input}
               placeholder="Usuário"
@@ -162,7 +162,7 @@ export default function Login() {
 
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-              <Image source={require('../IMG/instragam.jpg')} style={styles.socialIcon} />
+              <Image source={require('../IMG/instragam.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../IMG/email.png')} style={styles.socialIcon} />
@@ -183,52 +183,142 @@ const styles = StyleSheet.create({
   scrollContainer: { flexGrow: 1, justifyContent: 'space-between', minHeight: '100%' },
   content: { flex: 1, alignItems: 'center' },
 
-  logoContainer: { alignItems: 'center', marginBottom: 10, marginTop: 20 },
-  logo: { width: 150, height: 150, borderRadius: 15 },
+  logoContainer: { alignItems: 'center', marginBottom: 10 },
+  logo: { width: 180, height: 180, borderRadius: 15 },
 
-  card: { 
-    width: '90%', 
-    backgroundColor: 'white', 
-    borderRadius: 10, 
-    padding: 20, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.1, 
-    shadowOffset: { width: 0, height: 4 }, 
+  card: {
+    width: '90%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
     shadowRadius: 4,
     marginBottom: 20,
     marginTop: 40,
   },
   input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 10, marginVertical: 10 },
   linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
-  link: { color: '#357447', textDecorationLine: 'underline', fontSize: 12, marginTop:12 },
+  link: { color: '#357447', textDecorationLine: 'underline', fontSize: 12, marginTop: 12 },
   botao: { backgroundColor: '#357447', padding: 15, borderRadius: 6, alignItems: 'center' },
   botaoTexto: { color: '#fff', fontWeight: 'bold' },
   voltarBotao: { marginTop: 15, alignItems: 'center' },
   voltarTexto: { color: '#357447', fontWeight: 'bold' },
 
-  footer: { marginTop: 80, alignItems: 'center', justifyContent: 'center', paddingVertical: 25, backgroundColor: '#357447', width: '100%' },
+  footer: {
+    marginTop: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 25,
+    backgroundColor: '#357447',
+    width: '100%'
+  },
   footerTitle: { fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
   footerText: { color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
   subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
   subscribeTitle: { fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
   inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
-  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white', marginTop: 15, marginBottom: 15 },
-  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41, width:41 },
-  inputButtonText: { color: 'white', fontWeight: 'bold',paddingRight: 45},
-  socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
-  socialIcon: { width: 35, height: 35, marginHorizontal: 10 },
-  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 10, marginBottom: 5, fontWeight: 'bold' },
+  inputSugestao: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    marginRight: 5,
+    height: 41,
+    color: 'white',
+    marginTop: 15,
+    marginBottom: 2
+  },
+  inputButton: {
+    backgroundColor: '#255736',
+    paddingHorizontal: 15,
+    justifyContent: 'center',
+    borderRadius: 5,
+    height: 41,
+    width: 41
+  },
+  inputButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    paddingRight: 45
+  },
+  socialContainer: {
+    flexDirection: 'row',
+    marginTop: 2,
+    justifyContent: 'center'
+  },
+  socialIcon: {
+    width: 50,
+    height: 50,
+    marginHorizontal: 0.2
+  },
+  footerCopyright: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 5,
+    fontWeight: 'bold'
+  },
 
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
-  modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },
-  modalTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
-  modalOption: { backgroundColor: '#357447', width: '100%', padding: 15, borderRadius: 6, marginBottom: 6, alignItems: 'center' },
-  modalOptionText: { color: 'white', fontWeight: 'bold', fontSize: 14 },
-  modalClose: { marginTop: 3},
-  modalCloseText: { color: '#357447', fontWeight: 'bold' },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center'
+  },
+  modalTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  modalOption: {
+    backgroundColor: '#357447',
+    width: '100%',
+    padding: 15,
+    borderRadius: 6,
+    marginBottom: 6,
+    alignItems: 'center'
+  },
+  modalOptionText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14
+  },
+  modalClose: { marginTop: 3 },
+  modalCloseText: {
+    color: '#357447',
+    fontWeight: 'bold'
+  },
 
   pickerContainer: { marginTop: 25, width: '100%' },
-  pickerLabel: { color: '#357447', fontSize: 14, fontWeight: 'bold', marginBottom: 20 },
-  picker: { height: 50, width: '100%', borderWidth: 1, borderColor: '#ccc', borderRadius: 6, paddingLeft: 10, color: '#000', justifyContent: 'center', paddingRight: 90 },
+  pickerLabel: {
+    color: '#357447',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 20
+  },
+  picker: {
+    height: 50,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    paddingLeft: 10,
+    color: '#000',
+    justifyContent: 'center',
+    paddingRight: 90
+  }
 });

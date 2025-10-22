@@ -1,26 +1,24 @@
 import React from 'react';
-import { Text } from 'react-native'; // Importar Text para os ícones dos toasts
+import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
-// Importando todas as telas
-import home from './JS/home';
-import login from './JS/login';
-import ajuda from './JS/ajuda';
-import projetosSociais from './JS/projetosSociais';
-import cadastroPF from './JS/cadastroPF';
-import cadastroPJ from './JS/cadastroPJ';
-import sobreNos from './JS/sobreNos';
-import perfilPF from './JS/perfilPF';
-import perfilPJ from './JS/perfilPJ';
-import editarPerfilPJ from './JS/editarPerfilPJ';
-import editarPerfilPF from './JS/editarPerfilPF';
+// Telas
+import Home from './JS/home';
+import Login from './JS/login';
+import Ajuda from './JS/ajuda';
+import ProjetosSociais from './JS/projetosSociais';
+import CadastroPF from './JS/cadastroPF';
+import CadastroPJ from './JS/cadastroPJ';
+import SobreNos from './JS/sobreNos';
+import PerfilPF from './JS/perfilPF';
+import PerfilPJ from './JS/perfilPJ';
+import EditarPerfilPJ from './JS/editarPerfilPJ';
+import EditarPerfilPF from './JS/editarPerfilPF';
 
-const Stack = createNativeStackNavigator();
-
-// ⚡ Estilos personalizados dos toasts
-export const toastConfig = {
+// Toast personalizado
+const toastConfig = {
   success: (props) => (
     <BaseToast
       {...props}
@@ -29,7 +27,6 @@ export const toastConfig = {
       text1Style={{ fontSize: 16, fontWeight: 'bold', color: '#fff' }}
       text2Style={{ fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>✅</Text>}
-      text1NumberOfLines={2}
     />
   ),
   error: (props) => (
@@ -39,31 +36,32 @@ export const toastConfig = {
       text1Style={{ fontSize: 16, fontWeight: 'bold', color: '#fff' }}
       text2Style={{ fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>❌</Text>}
-      text1NumberOfLines={2}
     />
   ),
 };
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="home" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="home" component={home} />
-          <Stack.Screen name="Login" component={login} />
-          <Stack.Screen name="ajuda" component={ajuda} />
-          <Stack.Screen name="projetosSociais" component={projetosSociais} />
-          <Stack.Screen name="cadastroPF" component={cadastroPF} />
-          <Stack.Screen name="cadastroPJ" component={cadastroPJ} />
-          <Stack.Screen name="perfilPF" component={perfilPF} />
-          <Stack.Screen name="perfilPJ" component={perfilPJ} />
-          <Stack.Screen name="sobreNos" component={sobreNos} />
-          <Stack.Screen name="editarPerfilPJ" component={editarPerfilPJ} />
-          <Stack.Screen name="editarPerfilPF" component={editarPerfilPF} />
+          <Stack.Screen name="home" component={Home} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="ajuda" component={Ajuda} />
+          <Stack.Screen name="projetosSociais" component={ProjetosSociais} />
+          <Stack.Screen name="cadastroPF" component={CadastroPF} />
+          <Stack.Screen name="cadastroPJ" component={CadastroPJ} />
+          <Stack.Screen name="perfilPF" component={PerfilPF} />
+          <Stack.Screen name="perfilPJ" component={PerfilPJ} />
+          <Stack.Screen name="sobreNos" component={SobreNos} />
+          <Stack.Screen name="editarPerfilPJ" component={EditarPerfilPJ} />
+          <Stack.Screen name="editarPerfilPF" component={EditarPerfilPF} />
         </Stack.Navigator>
       </NavigationContainer>
 
-      {/* Toast Global */}
+      {/* Toast Global com config personalizado */}
       <Toast config={toastConfig} />
     </>
   );
