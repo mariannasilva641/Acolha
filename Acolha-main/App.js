@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
+import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
 // Telas
-import Home from './JS/home';
-import Login from './JS/login';
-import Ajuda from './JS/ajuda';
-import ProjetosSociais from './JS/projetosSociais';
-import CadastroPF from './JS/cadastroPF';
-import CadastroPJ from './JS/cadastroPJ';
-import SobreNos from './JS/sobreNos';
-import PerfilPF from './JS/perfilPF';
-import PerfilPJ from './JS/perfilPJ';
-import EditarPerfilPJ from './JS/editarPerfilPJ';
-import EditarPerfilPF from './JS/editarPerfilPF';
+import Home from './JS/pagInfo/home';
+import Login from './JS/login_cadastro/login';
+import Ajuda from './JS/pagInfo/ajuda';
+import ProjetosSociais from './JS/pagInfo/projetosSociais';
+import CadastroPF from './JS/login_cadastro/cadastroPF';
+import CadastroPJ from './JS/login_cadastro/cadastroPJ';
+import SobreNos from './JS/pagInfo/sobreNos';
+import PerfilPF from './JS/perfis/perfilPF';
+import PerfilPJ from './JS/perfis/perfilPJ';
+import EditarPerfilPJ from './JS/edicaoPerfis/editarPerfilPJ';
+import EditarPerfilPF from './JS/edicaoPerfis/editarPerfilPF';
 
 // Toast personalizado
 const toastConfig = {
@@ -24,8 +25,8 @@ const toastConfig = {
       {...props}
       style={{ borderLeftColor: '#28a745', backgroundColor: '#28a745' }}
       contentContainerStyle={{ paddingHorizontal: 15 }}
-      text1Style={{ fontSize: 16, fontWeight: 'bold', color: '#fff' }}
-      text2Style={{ fontSize: 14, color: '#fff' }}
+      text1Style={{fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: '#fff' }}
+      text2Style={{fontFamily:'Questrial-Regular',fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>✅</Text>}
     />
   ),
@@ -33,8 +34,8 @@ const toastConfig = {
     <ErrorToast
       {...props}
       style={{ borderLeftColor: '#dc3545', backgroundColor: '#dc3545' }}
-      text1Style={{ fontSize: 16, fontWeight: 'bold', color: '#fff' }}
-      text2Style={{ fontSize: 14, color: '#fff' }}
+      text1Style={{fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: '#fff' }}
+      text2Style={{fontFamily:'Questrial-Regular',fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>❌</Text>}
     />
   ),
@@ -43,6 +44,25 @@ const toastConfig = {
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  // Carregar fontes
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Questrial-Regular': require('./assets/fonts/Questrial-Regular.ttf'),
+         'PTSerif-Regular': require('./assets/fonts/PTSerif-Regular.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+ 
+    return null; 
+  }
+
   return (
     <>
       <NavigationContainer>
@@ -61,7 +81,6 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
 
-      {/* Toast Global com config personalizado */}
       <Toast config={toastConfig} />
     </>
   );
