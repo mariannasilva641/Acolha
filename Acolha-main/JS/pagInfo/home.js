@@ -250,7 +250,7 @@ navLink: {
     paddingHorizontal: 20,
     marginTop: 5,
   },
-  cardButtonText: { color: 'white', fontWeight: 'bold', fontSize: 14,fontFamily:'PTSerif-Regular' },
+  cardButtonText: { color: 'white', fontWeight: 'bold', fontSize: 14,fontFamily:'Questrial-Regular'},
 
   equipeContainer: { marginTop: 20, width: '100%', paddingLeft: 10 },
   equipeTitulo: { backgroundColor:'#ffffffff',fontFamily:'Questrial-Regular',fontSize: 18, fontWeight: 'bold', marginBottom: 10, marginTop: 10, color: '#357447', textAlign: 'center' },

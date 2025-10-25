@@ -17,6 +17,7 @@ import PerfilPF from './JS/perfis/perfilPF';
 import PerfilPJ from './JS/perfis/perfilPJ';
 import EditarPerfilPJ from './JS/edicaoPerfis/editarPerfilPJ';
 import EditarPerfilPF from './JS/edicaoPerfis/editarPerfilPF';
+import PerfilAdm from './JS/perfis/perfilAdm';
 
 // Toast personalizado
 const toastConfig = {
@@ -25,8 +26,8 @@ const toastConfig = {
       {...props}
       style={{ borderLeftColor: '#28a745', backgroundColor: '#28a745' }}
       contentContainerStyle={{ paddingHorizontal: 15 }}
-      text1Style={{fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: '#fff' }}
-      text2Style={{fontFamily:'Questrial-Regular',fontSize: 14, color: '#fff' }}
+      text1Style={{ fontFamily: 'Questrial-Regular', fontSize: 16, fontWeight: 'bold', color: '#fff' }}
+      text2Style={{ fontFamily: 'Questrial-Regular', fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>✅</Text>}
     />
   ),
@@ -34,8 +35,8 @@ const toastConfig = {
     <ErrorToast
       {...props}
       style={{ borderLeftColor: '#dc3545', backgroundColor: '#dc3545' }}
-      text1Style={{fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: '#fff' }}
-      text2Style={{fontFamily:'Questrial-Regular',fontSize: 14, color: '#fff' }}
+      text1Style={{ fontFamily: 'Questrial-Regular', fontSize: 16, fontWeight: 'bold', color: '#fff' }}
+      text2Style={{ fontFamily: 'Questrial-Regular', fontSize: 14, color: '#fff' }}
       renderLeadingIcon={() => <Text style={{ fontSize: 18 }}>❌</Text>}
     />
   ),
@@ -51,7 +52,7 @@ export default function App() {
     async function loadFonts() {
       await Font.loadAsync({
         'Questrial-Regular': require('./assets/fonts/Questrial-Regular.ttf'),
-         'PTSerif-Regular': require('./assets/fonts/PTSerif-Regular.ttf'),
+        'PTSerif-Regular': require('./assets/fonts/PTSerif-Regular.ttf'),
       });
       setFontsLoaded(true);
     }
@@ -59,7 +60,6 @@ export default function App() {
   }, []);
 
   if (!fontsLoaded) {
- 
     return null; 
   }
 
@@ -78,6 +78,7 @@ export default function App() {
           <Stack.Screen name="sobreNos" component={SobreNos} />
           <Stack.Screen name="editarPerfilPJ" component={EditarPerfilPJ} />
           <Stack.Screen name="editarPerfilPF" component={EditarPerfilPF} />
+          <Stack.Screen name="perfilAdm" component={PerfilAdm} />
         </Stack.Navigator>
       </NavigationContainer>
 

@@ -1,14 +1,24 @@
 import React, { useState } from "react";
-import { 
-  View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, 
-  KeyboardAvoidingView, Platform, ImageBackground, Dimensions 
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  ImageBackground,
+  useWindowDimensions,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import Toast from 'react-native-toast-message';
+import Toast from "react-native-toast-message";
 
 export default function EditarPerfilPJ() {
   const route = useRoute();
   const navigation = useNavigation();
+  const { width } = useWindowDimensions();
 
   const {
     nome = "",
@@ -46,12 +56,12 @@ export default function EditarPerfilPJ() {
     };
 
     Toast.show({
-      type: 'success',
-      text1: '✅ Sucesso',
-      text2: 'As informações foram atualizadas com sucesso!',
-      position: 'top',
+      type: "success",
+      text1: "✅ Sucesso",
+      text2: "As informações foram atualizadas com sucesso!",
+      position: "top",
       visibilityTime: 2000,
-      fontFamily:'Questrial-Regular',
+      fontFamily: "Questrial-Regular",
     });
 
     navigation.replace("perfilPJ", dadosAtualizados);
@@ -59,68 +69,151 @@ export default function EditarPerfilPJ() {
 
   function cancelar() {
     Toast.show({
-      type: 'info',
-      text1: 'Cancelado',
-      text2: 'As alterações não foram salvas.',
-      position: 'top',
+      type: "info",
+      text1: "Cancelado",
+      text2: "As alterações não foram salvas.",
+      position: "top",
       visibilityTime: 2000,
-      fontFamily:'Questrial-Regular',
+      fontFamily: "Questrial-Regular",
     });
 
     navigation.goBack();
   }
 
+  // Layout responsivo: muda para duas colunas se a largura for > 900px
+  const isWideScreen = width >= 900;
+
   return (
     <ImageBackground
-      source={require('../../IMG/FundoCadastro.jpeg')}
+      source={require("../../IMG/FundoCadastro.jpeg")}
       style={styles.background}
+      resizeMode="cover"
     >
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         >
-          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-            <Text style={styles.title}>Editar Dados da Empresa</Text>
+          <ScrollView
+            contentContainerStyle={[
+              styles.scrollContent,
+              { alignItems: "center" },
+            ]}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View
+              style={[
+                styles.formContainer,
+                {
+                  width:
+                    width < 400
+                      ? "95%"
+                      : width < 900
+                      ? "90%"
+                      : 900, // limita largura máxima
+                },
+              ]}
+            >
+              <Text style={styles.title}>Editar Dados da Empresa</Text>
 
-            <View style={styles.formContainer}>
-              <Text style={styles.label}>Nome</Text>
-              <TextInput style={styles.input} value={nomeEdit} onChangeText={setNomeEdit} />
+              <View
+                style={[
+                  styles.formContent,
+                  isWideScreen && {
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  },
+                ]}
+              >
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Nome</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={nomeEdit}
+                    onChangeText={setNomeEdit}
+                  />
+                </View>
 
-              <Text style={styles.label}>Email</Text>
-              <TextInput style={styles.input} value={emailEdit} onChangeText={setEmailEdit} keyboardType="email-address" autoCapitalize="none" />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Email</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={emailEdit}
+                    onChangeText={setEmailEdit}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                  />
+                </View>
 
-              <Text style={styles.label}>Senha</Text>
-              <TextInput style={styles.input} value={senhaEdit} onChangeText={setSenhaEdit} secureTextEntry />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Senha</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={senhaEdit}
+                    onChangeText={setSenhaEdit}
+                    secureTextEntry
+                  />
+                </View>
 
-              <Text style={styles.label}>CNPJ</Text>
-              <TextInput style={styles.input} value={cnpjEdit} onChangeText={setCnpjEdit} keyboardType="number-pad" />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>CNPJ</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={cnpjEdit}
+                    onChangeText={setCnpjEdit}
+                    keyboardType="number-pad"
+                  />
+                </View>
 
-              <Text style={styles.label}>Telefone</Text>
-              <TextInput style={styles.input} value={telefoneEdit} onChangeText={setTelefoneEdit} keyboardType="phone-pad" />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Telefone</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={telefoneEdit}
+                    onChangeText={setTelefoneEdit}
+                    keyboardType="phone-pad"
+                  />
+                </View>
 
-              <Text style={styles.label}>Nome do Representante</Text>
-              <TextInput style={styles.input} value={nomeRepresentanteEdit} onChangeText={setNomeRepresentanteEdit} />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Nome do Representante</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={nomeRepresentanteEdit}
+                    onChangeText={setNomeRepresentanteEdit}
+                  />
+                </View>
 
-              <Text style={styles.label}>Cargo</Text>
-              <TextInput style={styles.input} value={cargoEdit} onChangeText={setCargoEdit} />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Cargo</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={cargoEdit}
+                    onChangeText={setCargoEdit}
+                  />
+                </View>
 
-              <Text style={styles.label}>Área de Atuação</Text>
-              <TextInput
-                style={[styles.input, { height: 90 }]}
-                value={areaAtuacaoEdit}
-                onChangeText={setAreaAtuacaoEdit}
-                multiline
-              />
+                <View style={[styles.inputGroup, isWideScreen && styles.halfWidth]}>
+                  <Text style={styles.label}>Área de Atuação</Text>
+                  <TextInput
+                    style={[styles.input, { height: 90 }]}
+                    value={areaAtuacaoEdit}
+                    onChangeText={setAreaAtuacaoEdit}
+                    multiline
+                  />
+                </View>
 
-              <Text style={styles.label}>Mensagem</Text>
-              <TextInput
-                style={[styles.input, { height: 90 }]}
-                value={mensagemEdit}
-                onChangeText={setMensagemEdit}
-                multiline
-              />
+                <View style={[styles.inputGroup, { width: "100%" }]}>
+                  <Text style={styles.label}>Mensagem</Text>
+                  <TextInput
+                    style={[styles.input, { height: 90 }]}
+                    value={mensagemEdit}
+                    onChangeText={setMensagemEdit}
+                    multiline
+                  />
+                </View>
+              </View>
 
               <TouchableOpacity style={styles.saveButton} onPress={salvar}>
                 <Text style={styles.saveButtonText}>Salvar</Text>
@@ -137,14 +230,43 @@ export default function EditarPerfilPJ() {
   );
 }
 
-const screenWidth = Dimensions.get("window").width;
-
 const styles = StyleSheet.create({
-  background: { flex: 1, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
+  background: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
   safeArea: { flex: 1 },
 
-  scrollContent: { padding: 20, alignItems: 'center' },
+  scrollContent: { paddingVertical: 30, justifyContent: "center" },
+
+  formContainer: {
+    backgroundColor: "rgba(255,255,255,0.9)",
+    borderRadius: 15,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 5,
+    alignSelf: "center",
+  },
+
+  formContent: {
+    width: "100%",
+  },
+
+  inputGroup: {
+    marginBottom: 15,
+    width: "100%",
+  },
+
+  halfWidth: {
+    width: "48%", // duas colunas lado a lado
+  },
 
   title: {
     fontSize: 34,
@@ -152,23 +274,16 @@ const styles = StyleSheet.create({
     color: "#255736",
     marginBottom: 20,
     textAlign: "center",
-    fontFamily:'Questrial-Regular',
-    fontWeight:'760'
+    fontFamily: "Questrial-Regular",
   },
 
-  formContainer: {
-    width: '100%',
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    borderRadius: 15,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 5,
-    elevation: 5,
+  label: {
+    fontFamily: "Questrial-Regular",
+    fontWeight: "bold",
+    marginBottom: 5,
+    color: "#357447",
+    fontSize: 16,
   },
-
-  label: { fontFamily:'Questrial-Regular',fontWeight: "bold", marginTop: 15, marginBottom: 5, color: "#357447", fontSize: 16 },
 
   input: {
     backgroundColor: "white",
@@ -178,8 +293,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 16,
-    marginTop: 4,
-    fontFamily:'Questrial-Regular'
+    fontFamily: "Questrial-Regular",
   },
 
   saveButton: {
@@ -198,8 +312,12 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: "center",
-    fontFamily:'Questrial-Regular'
   },
 
-  cancelButtonText: { fontFamily:'Questrial-Regular',color: "#333", fontWeight: "bold", fontSize: 16 },
+  cancelButtonText: {
+    fontFamily: "Questrial-Regular",
+    color: "#333",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });

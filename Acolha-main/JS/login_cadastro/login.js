@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView,
-  Image, Modal, ImageBackground, Linking, Picker
+  Image, Modal, ImageBackground, Linking
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
@@ -22,7 +23,6 @@ export default function Login() {
         text2: 'Por favor, preencha todos os campos antes de acessar!',
         position: 'top',
         visibilityTime: 2500,
-          fontFamily:'Questrial-Regular',
       });
       return;
     }
@@ -33,14 +33,16 @@ export default function Login() {
       text2: `Bem-vindo(a)!`,
       position: 'top',
       visibilityTime: 2000,
-      fontFamily:'Questrial-Regular',
     });
 
+    // Navegar após o toast sumir
     setTimeout(() => {
       if (tipoPessoa === 'fisica') {
         navigation.navigate('perfilPF');
-      } else {
+      } else if (tipoPessoa === 'juridica') {
         navigation.navigate('perfilPJ');
+      } else if (tipoPessoa === 'adm') {
+        navigation.navigate('perfilAdm');
       }
     }, 2000);
   };
@@ -55,16 +57,32 @@ export default function Login() {
     navigation.navigate('cadastroPJ');
   };
 
+  const handleCadastroAdm = () => {
+    setModalVisible(false);
+    navigation.navigate('perfilAdm');
+  };
+
   return (
-    <ImageBackground source={require('../../IMG/FundoAcolha.png')} style={styles.background}>
-      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false} bounces={false}>
+    <ImageBackground
+      source={require('../../IMG/FundoAcolha.png')}
+      style={styles.background}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
         <View style={styles.content}>
           <View style={styles.card}>
-            {/* LOGO DENTRO DO CARD */}
+            {/* LOGO */}
             <View style={styles.logoContainer}>
-              <Image source={require('../../IMG/width_500.webp')} style={styles.logo} />
+              <Image
+                source={require('../../IMG/width_500.webp')}
+                style={styles.logo}
+              />
             </View>
 
+            {/* Inputs */}
             <TextInput
               style={styles.input}
               placeholder="Usuário"
@@ -79,6 +97,7 @@ export default function Login() {
               secureTextEntry
             />
 
+            {/* Picker tipo de pessoa */}
             <View style={styles.pickerContainer}>
               <Text style={styles.pickerLabel}>Tipo de Pessoa</Text>
               <Picker
@@ -88,31 +107,45 @@ export default function Login() {
               >
                 <Picker.Item label="Pessoa Física" value="fisica" />
                 <Picker.Item label="Pessoa Jurídica" value="juridica" />
+                <Picker.Item label="Administrador" value="adm" />
               </Picker>
             </View>
 
+            {/* Links */}
             <View style={styles.linksContainer}>
-              <Text style={styles.link} onPress={() => Toast.show({
-                type: 'error',
-                text1: 'Recuperação de senha',
-                text2: 'Função ainda não implementada.',
-                position: 'top',
-                fontFamily:'Questrial-Regular',
-              })}>
+              <Text
+                style={styles.link}
+                onPress={() =>
+                  Toast.show({
+                    type: 'error',
+                    text1: 'Recuperação de senha',
+                    text2: 'Função ainda não implementada.',
+                    position: 'top',
+                  })
+                }
+              >
                 Esqueci minha senha
               </Text>
-              <Text style={styles.link} onPress={() => setModalVisible(true)}>Criar conta</Text>
+
+              <Text style={styles.link} onPress={() => setModalVisible(true)}>
+                Criar conta
+              </Text>
             </View>
 
+            {/* Botões */}
             <TouchableOpacity style={styles.botao} onPress={handleLogin}>
               <Text style={styles.botaoTexto}>Acessar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.voltarBotao} onPress={() => navigation.navigate('home')}>
+            <TouchableOpacity
+              style={styles.voltarBotao}
+              onPress={() => navigation.navigate('home')}
+            >
               <Text style={styles.voltarTexto}>⬅ Voltar à página inicial</Text>
             </TouchableOpacity>
           </View>
 
+          {/* MODAL DE CADASTRO */}
           <Modal
             visible={modalVisible}
             transparent
@@ -122,12 +155,19 @@ export default function Login() {
             <View style={styles.modalOverlay}>
               <View style={styles.modalContent}>
                 <Text style={styles.modalTitle}>Escolha o tipo de cadastro</Text>
+
                 <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPF}>
                   <Text style={styles.modalOptionText}>Pessoa Física</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity style={styles.modalOption} onPress={handleCadastroPJ}>
                   <Text style={styles.modalOptionText}>Pessoa Jurídica</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={styles.modalOption} onPress={handleCadastroAdm}>
+                  <Text style={styles.modalOptionText}>Administrador</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.modalClose} onPress={() => setModalVisible(false)}>
                   <Text style={styles.modalCloseText}>Cancelar</Text>
                 </TouchableOpacity>
@@ -136,6 +176,7 @@ export default function Login() {
           </Modal>
         </View>
 
+        {/* FOOTER */}
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>Acolha</Text>
           <Text style={styles.footerText}>Acolhendo vidas. Construindo Futuros</Text>
@@ -146,6 +187,7 @@ export default function Login() {
               Envie aqui suas sugestões, dúvidas ou críticas.{"\n"}
               Sua opinião é muito importante para nós!
             </Text>
+
             <View style={styles.inputGroup}>
               <TextInput
                 placeholder="Sua Sugestão"
@@ -167,13 +209,15 @@ export default function Login() {
             <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
               <Image source={require('../../IMG/instragam.png')} style={styles.socialIcon} />
             </TouchableOpacity>
+
             <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
               <Image source={require('../../IMG/email.png')} style={styles.socialIcon} />
             </TouchableOpacity>
           </View>
 
           <Text style={styles.footerCopyright}>
-            © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca registrada da Civitas Tech.
+            © 2025 todos os direitos reservados.{"\n"}
+            Acolha é uma marca registrada da Civitas Tech.
           </Text>
         </View>
       </ScrollView>
@@ -201,131 +245,44 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 40,
   },
-  input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 10, marginVertical: 10,fontFamily:'Questrial-Regular', },
-  linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
-  link: {fontFamily:'Questrial-Regular', color: '#357447', textDecorationLine: 'underline', fontSize: 12, marginTop: 12 },
-  botao: { backgroundColor: '#357447', padding: 15, borderRadius: 6, alignItems: 'center' },
-  botaoTexto: { fontFamily:'Questrial-Regular',color: '#fff', fontWeight: 'bold' },
-  voltarBotao: { marginTop: 15, alignItems: 'center' },
-  voltarTexto: { fontFamily:'Questrial-Regular',color: '#357447', fontWeight: 'bold' },
-
-  footer: {
-    marginTop: 80,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 25,
-    backgroundColor: '#357447',
-    width: '100%'
-  },
-  footerTitle: { fontFamily:'Questrial-Regular',fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
-  footerText: { fontFamily:'Questrial-Regular',color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
-  subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
-  subscribeTitle: { fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: 'white' },
-  subscribeText: {fontFamily:'Questrial-Regular',textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
-  inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
-  inputSugestao: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    flex: 1,
-    marginRight: 5,
-    height: 41,
-    color: 'white',
-    marginTop: 15,
-    marginBottom: 2,
-    fontFamily:'Questrial-Regular'
-  },
-  inputButton: {
-    backgroundColor: '#255736',
-    paddingHorizontal: 15,
-    justifyContent: 'center',
-    borderRadius: 5,
-    height: 45,
-    width: 41
-  },
-  inputButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    paddingRight: 45
-  },
-  socialContainer: {
-    flexDirection: 'row',
-    marginTop: 2,
-    justifyContent: 'center'
-  },
-  socialIcon: {
-    width: 50,
-    height: 50,
-    marginHorizontal: 0.2
-  },
-  footerCopyright: {
-    color: 'white',
-    fontSize: 12,
-    textAlign: 'center',
-    marginTop: 5,
-    marginBottom: 5,
-    fontWeight: 'bold',
-    fontFamily:'Questrial-Regular'
-  },
-
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modalContent: {
-    width: '80%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
-    alignItems: 'center'
-  },
-  modalTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center'
-  },
-  modalOption: {
-    backgroundColor: '#357447',
-    width: '100%',
-    padding: 15,
-    borderRadius: 6,
-    marginBottom: 6,
-    alignItems: 'center'
-  },
-  modalOptionText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14,
-    fontFamily:'Questrial-Regular'
-  },
-  modalClose: { marginTop: 3 },
-  modalCloseText: {
-    color: '#357447',
-    fontWeight: 'bold',
-    fontFamily:'Questrial-Regular'
-  },
-
-  pickerContainer: { marginTop: 25, width: '100%' },
-  pickerLabel: {
-    color: '#357447',
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 20
-  },
-  picker: {
-    height: 50,
-    width: '100%',
+  input: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 6,
-    paddingLeft: 10,
-    color: '#000',
-    justifyContent: 'center',
-    paddingRight: 90
-  }
+    padding: 10,
+    marginVertical: 10,
+    fontFamily: 'Questrial-Regular',
+  },
+  linksContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
+  link: { fontFamily: 'Questrial-Regular', color: '#357447', textDecorationLine: 'underline', fontSize: 12, marginTop: 12 },
+  botao: { backgroundColor: '#357447', padding: 15, borderRadius: 6, alignItems: 'center' },
+  botaoTexto: { fontFamily: 'Questrial-Regular', color: '#fff', fontWeight: 'bold' },
+  voltarBotao: { marginTop: 15, alignItems: 'center' },
+  voltarTexto: { fontFamily: 'Questrial-Regular', color: '#357447', fontWeight: 'bold' },
+
+  footer: { marginTop: 80, alignItems: 'center', justifyContent: 'center', paddingVertical: 25, backgroundColor: '#357447', width: '100%' },
+  footerTitle: { fontFamily: 'Questrial-Regular', fontSize: 18, fontWeight: 'bold', color: 'white', marginBottom: 5 },
+  footerText: { fontFamily: 'Questrial-Regular', color: 'white', textAlign: 'center', marginVertical: 5, lineHeight: 20 },
+  subscribe: { marginTop: 10, alignItems: 'center', width: '90%' },
+  subscribeTitle: { fontFamily: 'Questrial-Regular', fontSize: 16, fontWeight: 'bold', color: 'white' },
+  subscribeText: { fontFamily: 'Questrial-Regular', textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
+  inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
+  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white', marginTop: 15, marginBottom: 2, fontFamily: 'Questrial-Regular' },
+  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 45, width: 41 },
+  inputButtonText: { color: 'white', fontWeight: 'bold', paddingRight: 45 },
+  socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },
+  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5, marginBottom: 5, fontWeight: 'bold', fontFamily: 'Questrial-Regular' },
+
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
+  modalContent: { width: '80%', backgroundColor: 'white', borderRadius: 10, padding: 20, alignItems: 'center' },
+  modalTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
+  modalOption: { backgroundColor: '#357447', width: '100%', padding: 15, borderRadius: 6, marginBottom: 6, alignItems: 'center' },
+  modalOptionText: { color: 'white', fontWeight: 'bold', fontSize: 14, fontFamily: 'Questrial-Regular' },
+  modalClose: { marginTop: 3 },
+  modalCloseText: { color: '#357447', fontWeight: 'bold', fontFamily: 'Questrial-Regular' },
+
+  pickerContainer: { marginTop: 25, width: '100%' },
+  pickerLabel: { color: '#357447', fontSize: 14, fontWeight: 'bold', marginBottom: 10 },
+  picker: { height: 50, width: '100%', color: '#000' },
 });
