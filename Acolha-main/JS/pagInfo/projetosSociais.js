@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     color: 'white',
-    height: 43,
+    height: 34,
     fontFamily:'Questrial-Regular',
   },
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5 },

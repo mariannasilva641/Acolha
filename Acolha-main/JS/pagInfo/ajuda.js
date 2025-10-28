@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 15,
     marginBottom: 5,
-    height: 45,
+    height: 35,
     color: 'white',
     fontFamily:'Questrial-Regular',
   },

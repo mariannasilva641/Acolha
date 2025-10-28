@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   subscribeTitle: { fontFamily:'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { fontFamily:'Questrial-Regular',textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
   inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
-  inputSugestao: {fontFamily:'Questrial-Regular', backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, marginTop:2, marginBottom:15, height: 41, color: 'white' },
+  inputSugestao: {fontFamily:'Questrial-Regular', backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, marginTop:2, marginBottom:15, height: 34, color: 'white' },
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41 },
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },

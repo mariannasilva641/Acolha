@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 15,
     marginBottom: 2,
-    height: 41,
+    height: 34,
     color: 'white',
     fontFamily:'Questrial-Regular'
   },

@@ -18,6 +18,9 @@ import PerfilPJ from './JS/perfis/perfilPJ';
 import EditarPerfilPJ from './JS/edicaoPerfis/editarPerfilPJ';
 import EditarPerfilPF from './JS/edicaoPerfis/editarPerfilPF';
 import PerfilAdm from './JS/perfis/perfilAdm';
+import tiVerde from './JS/pagInfo/tiVerde';
+import historiaImigrantes from './JS/pagInfo/historiaImigrantes';
+import historiaAtlas from './JS/pagInfo/historiaAtlas';
 
 // Toast personalizado
 const toastConfig = {
@@ -79,6 +82,9 @@ export default function App() {
           <Stack.Screen name="editarPerfilPJ" component={EditarPerfilPJ} />
           <Stack.Screen name="editarPerfilPF" component={EditarPerfilPF} />
           <Stack.Screen name="perfilAdm" component={PerfilAdm} />
+          <Stack.Screen name="tiVerde" component={tiVerde} />
+          <Stack.Screen name="historiaImigrantes" component={historiaImigrantes} />
+          <Stack.Screen name="historiaAtlas" component={historiaAtlas} />
         </Stack.Navigator>
       </NavigationContainer>
 

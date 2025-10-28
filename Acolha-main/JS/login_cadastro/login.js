@@ -164,10 +164,6 @@ export default function Login() {
                   <Text style={styles.modalOptionText}>Pessoa Jurídica</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.modalOption} onPress={handleCadastroAdm}>
-                  <Text style={styles.modalOptionText}>Administrador</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity style={styles.modalClose} onPress={() => setModalVisible(false)}>
                   <Text style={styles.modalCloseText}>Cancelar</Text>
                 </TouchableOpacity>
@@ -267,7 +263,7 @@ const styles = StyleSheet.create({
   subscribeTitle: { fontFamily: 'Questrial-Regular', fontSize: 16, fontWeight: 'bold', color: 'white' },
   subscribeText: { fontFamily: 'Questrial-Regular', textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
   inputGroup: { flexDirection: 'row', width: '70%', alignItems: 'center' },
-  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 41, color: 'white', marginTop: 15, marginBottom: 2, fontFamily: 'Questrial-Regular' },
+  inputSugestao: { backgroundColor: 'transparent', borderWidth: 1, borderColor: 'white', padding: 10, borderRadius: 5, flex: 1, marginRight: 5, height: 34, color: 'white', marginTop: 15, marginBottom: 2, fontFamily: 'Questrial-Regular' },
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 45, width: 41 },
   inputButtonText: { color: 'white', fontWeight: 'bold', paddingRight: 45 },
   socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },
