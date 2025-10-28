@@ -99,7 +99,7 @@ export default function TiVerde() {
       {/* Card de conteúdo */}
 <View style={styles.card}>
   <Image
-    source={require("../../IMG/tiVerde.webp")}
+    source={require("../../IMG/Refugiado.jpg")}
     style={styles.cardImage}
     resizeMode="cover"
   />
