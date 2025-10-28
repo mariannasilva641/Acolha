@@ -1,17 +1,6 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  ImageBackground,
-  useWindowDimensions,
-} from "react-native";
+import {View,Text,TextInput,TouchableOpacity,SafeAreaView,ScrollView,KeyboardAvoidingView,Platform,ImageBackground,useWindowDimensions,} from "react-native";
+import styles from "../estilo/estiloEdicaoPerfis/estiloEditarPerfilPF.js";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 
@@ -213,82 +202,4 @@ export default function EditarPerfilPF() {
   );
 }
 
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  safeArea: { flex: 1 },
-  scrollContent: { paddingVertical: 30 },
-  formContainer: {
-    backgroundColor: "rgba(255,255,255,0.9)",
-    borderRadius: 15,
-    padding: 20,
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  formContent: { width: "100%" },
-  inputGroup: { marginBottom: 15, width: "100%" },
-  halfWidth: { width: "48%" },
-  title: {
-    fontSize: 34,
-    fontWeight: "bold",
-    color: "#255736",
-    marginBottom: 20,
-    textAlign: "center",
-    fontFamily: "Questrial-Regular",
-  },
-  label: {
-    fontFamily: "Questrial-Regular",
-    fontWeight: "bold",
-    marginBottom: 5,
-    color: "#357447",
-    fontSize: 16,
-  },
-  input: {
-    backgroundColor: "white",
-    borderColor: "#357447",
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: 16,
-    fontFamily: "Questrial-Regular",
-  },
-  inputTablet: {
-    fontSize: 14,
-    paddingVertical: 8,
-  },
-  saveButton: {
-    marginTop: 20,
-    backgroundColor: "#357447",
-    paddingVertical: 16,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  saveButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 18,
-    fontFamily: "Questrial-Regular",
-  },
-  cancelButton: {
-    marginTop: 10,
-    backgroundColor: "#aaa",
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  cancelButtonText: {
-    fontFamily: "Questrial-Regular",
-    color: "#333",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-});
+ 

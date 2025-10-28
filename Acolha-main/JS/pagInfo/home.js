@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, 
-  Linking, FlatList, ImageBackground, Animated, Easing
-} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity,Linking, FlatList, ImageBackground, Animated, Easing} from 'react-native';
+import styles from "../estilo/estiloPagInfo/estiloHome.js";
 import { useNavigation } from '@react-navigation/native';
+
 
 export default function Home() {
   const navigation = useNavigation();
@@ -161,98 +160,3 @@ export default function Home() {
   );
 }
 
-// 🟩 ESTILOS
-const styles = StyleSheet.create({
-  background: { flex: 1, width: '100%', height: '100%' },
-  container: { alignItems: 'center', backgroundColor: 'transparent', width: '100%' },
-
-  navbar: {
-    width: '100%',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: '#357447',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexWrap: 'nowrap',
-    zIndex: 10,
-  },
-  navbarLogo: { width: 120, height: 40, resizeMode: 'contain', marginBottom: 5 },
-  menuContainer: { position: 'relative' },
-  navbarLinks: { flexDirection: 'row', alignItems: 'center', gap: 15 },
-  navLink: { color: 'white', fontWeight: 'bold', fontSize: 12, fontFamily: 'Questrial-Regular' },
-  dropdownMenu: {
-    position: 'absolute',
-    top: 25,
-    right: 0,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    zIndex: 1000,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  dropdownItem: { paddingVertical: 6, fontSize: 14, fontFamily: 'Questrial-Regular', color: '#357447', fontWeight: '600', width: 125 },
-
-  card: {
-    width: '70%',
-    backgroundColor: '#357447',
-    borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    marginTop: 60,
-    alignItems: 'center',
-    elevation: 4,
-    overflow: 'hidden',
-    transition: 'all 0.4s ease',
-  },
-
-  cardHover: {
-    transform: [{ translateX: 10 }], // desliza para o lado
-    backgroundColor: '#3e8e54',
-    shadowColor: '#2b6a3c',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-
-  cardImage: { width: '100%', height: 190, borderRadius: 12, marginBottom: 12 },
-  cardTitle: { fontSize: 20, fontFamily: 'Questrial-Regular', fontWeight: 'bold', marginBottom: 6, color: 'white', textAlign: 'center' },
-  cardText: { fontFamily: 'Questrial-Regular', textAlign: 'justify', marginBottom: 12, color: '#e9f6eb', lineHeight: 20 },
-  cardButton: {
-    backgroundColor: '#2d5a36',
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'white',
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    marginTop: 5,
-  },
-  cardButtonText: { color: 'white', fontWeight: 'bold', fontSize: 14, fontFamily: 'Questrial-Regular' },
-
-  equipeContainer: { marginTop: 20, width: '100%', paddingLeft: 10 },
-  equipeTitulo: { backgroundColor: '#fff', fontFamily: 'Questrial-Regular', fontSize: 18, fontWeight: 'bold', marginBottom: 10, marginTop: 10, color: '#357447', textAlign: 'center' },
-  equipeCard: {
-    width: 220,
-    backgroundColor: '#2d5a36',
-    borderRadius: 10,
-    padding: 15,
-    marginRight: 10,
-    alignItems: 'center',
-  },
-  equipeFoto: { width: 100, height: 100, borderRadius: 50, marginBottom: 10 },
-  equipeNome: { fontFamily: 'Questrial-Regular', fontWeight: '720', fontSize: 16, marginBottom: 5, textAlign: 'center', color: 'white' },
-  equipeFuncao: { fontFamily: 'Questrial-Regular', fontSize: 14, color: '#fff', textAlign: 'center' },
-
-  footer: { alignItems: 'center', paddingVertical: 20, backgroundColor: '#2d5a36', width: '100%', marginTop: 40 },
-  footerTitle: {  marginTop:20,marginBottom:10,fontFamily: 'Questrial-Regular', fontSize: 18, fontWeight: 'bold', color: 'white' },
-  footerText: { fontFamily: 'Questrial-Regular', textAlign: 'center', marginVertical: 5, color: 'white' },
-  footerInfo: { textAlign: 'center', color: 'white', marginVertical: 2 },
-  socialContainer: { flexDirection: 'row', marginTop: 2 },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
-  footerCopyright: { fontFamily: 'Questrial-Regular', color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 5, fontWeight: 'bold' },
-});

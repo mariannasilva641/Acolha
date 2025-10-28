@@ -1,0 +1,97 @@
+import { StyleSheet } from "react-native";
+
+export default StyleSheet.create({
+    background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    overflowX: 'hidden',  // Força que o conteúdo não vaze horizontalmente
+  },
+  navbar: {
+    width: '100%',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: '#357447',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'relative',
+    zIndex: 10,
+  },
+  navbarLogo: { width: 120, height: 40, resizeMode: 'contain' },
+  menuContainer: { position: 'relative' },
+  navLink: { fontFamily:'Questrial-Regular',color: 'white', fontWeight: 'bold', fontSize: 14, marginHorizontal: 8 },
+
+  fixedLinks: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+  dropdownMenu: {
+    position: 'absolute',
+    top: 30,
+    right: 0,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    zIndex: 1000,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  dropdownItem: {
+    paddingVertical: 8,
+    fontSize: 14,
+    fontFamily:'Questrial-Regular',
+    color: '#357447',
+    fontWeight: '600',
+    width:65
+  },
+
+  contentContainer: { width: '85%', marginTop: 20  },
+  sectionImage: { width: '100%', height: 250, resizeMode: 'contain', borderRadius: 16, marginBottom: 2, marginTop: 20 },
+  title: { width: '74%',fontSize: 18, fontFamily: 'Questrial-Regular',fontWeight: 'bold', color: '#357447', marginBottom: 10, marginTop: 15,backgroundColor:'#FFFFFF',borderRadius:5 },
+  text: { backgroundColor:'#FFFFFF',fontSize: 16,fontFamily: 'Questrial-Regular', color: 'black', textAlign: 'justify', lineHeight: 22, marginBottom: 10 },
+  bold: { fontWeight: 'bold', color: 'black' },
+  topicContainer: { marginLeft: 15, marginBottom: 15 },
+
+  footer: {
+    alignItems: 'center',
+    paddingVertical: 20,
+    width: '100%',
+    backgroundColor: '#357447',
+    marginTop: 20,
+  },
+  footerTitle: { fontFamily: 'Questrial-Regular',fontSize: 18, fontWeight: 'bold', color: 'white' },
+  footerText: { fontFamily: 'Questrial-Regular',textAlign: 'center', marginVertical: 5, color: 'white' },
+  subscribe: { fontFamily: 'Questrial-Regular',marginTop: 10, alignItems: 'center', width: '90%' },
+  subscribeTitle: { fontFamily: 'Questrial-Regular',fontSize: 16, fontWeight: 'bold', color: 'white' },
+  subscribeText: {fontFamily: 'Questrial-Regular', textAlign: 'center', marginVertical: 10, color: 'white', lineHeight: 20 },
+  inputGroup: { flexDirection: 'row', marginTop: 2, marginBottom: 15, width: '70%' },
+  input: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    marginRight: 5,
+    color: 'white',
+    height: 34,
+    fontFamily:'Questrial-Regular',
+  },
+  inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5,width:41,height:45 },
+  inputButtonText: { color: 'white', fontWeight: 'bold',fontFamily:'Questrial-Regular' },
+  socialContainer: { flexDirection: 'row', justifyContent: 'center' },
+  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2, borderRadius: 10 },
+  footerCopyright: { fontFamily: 'Questrial-Regular',color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5,fontWeight: 'bold',fontWeight:'599'},
+});
