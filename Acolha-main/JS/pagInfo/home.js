@@ -42,16 +42,16 @@ export default function Home() {
   };
 
   const equipe = [
-    { nome: 'David Wendel', funcao: 'Administrador', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Heloisa Maria', funcao: 'Produtora Midiática', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Lorayne Yasmin', funcao: 'Pesquisadora de Inclusão Social', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Marianna Silva', funcao: 'Gestora de Logística & Programadora Front-End', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Matheus Gabriel', funcao: 'Supervisor & Programador Front-End', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Nicolas Vieira', funcao: 'Desenvolvedor Back-End', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Paulo Diaz', funcao: 'Pesquisador Legislativo', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Pedro Nogueira', funcao: 'Arquivista e Técnico de Documentação', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Vinícius Novaes', funcao: 'Produtor Midiático', foto: require('../../IMG/Atlas.png') },
-    { nome: 'Yasmyn Araujo', funcao: 'Produtora Midiática', foto: require('../../IMG/Atlas.png') },
+    { nome: 'David Wendel', funcao: 'Administrador', foto: require('../../IMG/Wendel.jpeg') },
+    { nome: 'Heloisa Maria', funcao: 'Produtora Midiática', foto: require('../../IMG/Heloisa.jpeg') },
+    { nome: 'Lorayne Yasmin', funcao: 'Pesquisadora de Inclusão Social', foto: require('../../IMG/Lorayne.jpeg') },
+    { nome: 'Marianna Silva', funcao: 'Gestora de Logística & Programadora Front-End', foto: require('../../IMG/Marianna.jpeg') },
+    { nome: 'Matheus Gabriel', funcao: 'Supervisor & Programador Front-End', foto: require('../../IMG/Matheus.jpeg') },
+    { nome: 'Nicolas Vieira', funcao: 'Desenvolvedor Back-End', foto: require('../../IMG/Nicolas.jpeg') },
+    { nome: 'Paulo Diaz', funcao: 'Pesquisador Legislativo', foto: require('../../IMG/Paulo.jpeg') },
+    { nome: 'Pedro Nogueira', funcao: 'Arquivista e Técnico de Documentação', foto: require('../../IMG/Pedro.jpeg') },
+    { nome: 'Vinícius Novaes', funcao: 'Produtor Midiático', foto: require('../../IMG/Vinicius.jpeg') },
+    { nome: 'Yasmyn Araujo', funcao: 'Produtora Midiática', foto: require('../../IMG/Yasmyn.jpeg') },
   ];
 
   return (
