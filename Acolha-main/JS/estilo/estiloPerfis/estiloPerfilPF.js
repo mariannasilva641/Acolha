@@ -32,6 +32,22 @@ export default StyleSheet.create({
   editButton: { backgroundColor: '#255736', paddingVertical: isTablet ? 14 : 10, borderRadius: 8, alignItems: 'center', marginTop: 25, width: '100%' },
   editButtonText: { color: 'white', fontWeight: 'bold', fontSize: isTablet ? 16 : 14, fontFamily:'Questrial-Regular' },
 
+  profilePhotoContainer: {
+  alignItems: 'center',        // centraliza a foto horizontalmente
+  marginBottom: 15,            // espaço abaixo da foto
+  marginTop: 10,               // espaço acima da foto
+},
+
+profilePhoto: {
+  width: 100,                  // largura da foto
+  height: 100,                 // altura da foto
+  borderRadius: 50,            // deixa a foto redonda
+  borderWidth: 2,              // largura da borda
+  borderColor: '#ffffff',      // cor da borda (branca neste caso)
+  backgroundColor: '#cccccc',  // cor de fundo caso a imagem não carregue
+  resizeMode: 'cover',         // mantém proporção da imagem
+}, 
+
   footerWrapper: { width: '100%', backgroundColor: '#357447', paddingVertical: isTablet ? 35 : 25, marginTop:60 },
   footer: { paddingHorizontal: 20, alignItems: 'center', maxWidth: 600, alignSelf: 'center' },
   footerTitle: { fontSize: isTablet ? 20 : 18, fontWeight: 'bold', color: 'white', marginBottom: 5, fontFamily:'Questrial-Regular' },
@@ -47,7 +63,7 @@ export default StyleSheet.create({
   inputButtonText: { color: 'white', fontWeight: 'bold' },
 
   socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 2 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 2 },
 
   footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5, fontWeight: 'bold', fontFamily:'Questrial-Regular' },
 });

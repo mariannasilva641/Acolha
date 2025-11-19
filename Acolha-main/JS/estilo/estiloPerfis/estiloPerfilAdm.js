@@ -157,7 +157,7 @@ export default StyleSheet.create({
     marginTop: 10,
   },
 
-  socialIcon: { width: 50, height: 50, marginHorizontal: 5 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 5 },
 
   footerCopyright: {
     color: "white",

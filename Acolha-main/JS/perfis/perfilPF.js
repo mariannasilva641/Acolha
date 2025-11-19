@@ -24,11 +24,32 @@ const solicitacoes = [
     motivo: 'Fuga de conflitos em país de origem',
     andamento: 'Em análise pelo governo',
   },
+];
+
+// NOVA LISTA DE VAGAS
+const vagas = [
   {
-    tipo: 'Retorno',
-    motivo: 'Desejo de voltar ao Brasil',
-    andamento: 'Aguardando documentação',
+    empresa: 'Grupo Limpo&Fácil',
+    cargo: 'Auxiliar de Limpeza',
+    local: 'São Paulo - SP',
+    descricao: 'Empresa contratando para serviços de limpeza leve e conservação. Não precisa de experiência.',
+    link: 'https://limpoefacil.com.br/vagas',
   },
+  {
+    empresa: 'Mercado Popular',
+    cargo: 'Repositor de Mercadorias',
+    local: 'Guarulhos - SP',
+    descricao: 'Atuação com reposição de prateleiras e organização do estoque. Treinamento no local.',
+    link: 'https://mercadopopular.com.br/carreiras',
+  },
+  {
+    empresa: 'MegaLog Transportes',
+    cargo: 'Ajudante Geral',
+    local: 'Osasco - SP',
+    descricao: 'Carga e descarga leves, organização e separação de produtos. Não exige escolaridade.',
+    link: 'https://megalog.com.br/empregos',
+  },
+
 ];
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -41,6 +62,7 @@ export default function PerfilPF() {
 
   const [mostrarProjetos, setMostrarProjetos] = useState(false);
   const [mostrarSolicitacoes, setMostrarSolicitacoes] = useState(false);
+  const [mostrarVagas, setMostrarVagas] = useState(false); // NOVO ESTADO
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -48,11 +70,7 @@ export default function PerfilPF() {
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <ImageBackground
-          source={require('../../IMG/FundoAcolha.png')}
-          style={styles.background}
-          resizeMode="cover"
-        >
+        <ImageBackground source={require('../../IMG/FundoAcolha.png')} style={styles.background} resizeMode="cover">
           <ScrollView
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
@@ -60,32 +78,39 @@ export default function PerfilPF() {
             <View style={styles.contentContainer}>
               <Text style={styles.title}>Perfil - Pessoa Física</Text>
 
-              {/* INFORMAÇÕES PESSOAIS */}
-              <View style={styles.card}>
-                <Text style={styles.sectionTitle}>Informações Pessoais</Text>
-                <Text style={styles.infoItem}>👤 Nome: {nome || 'Não informado'}</Text>
-                <Text style={styles.infoItem}>📧 Email: {email || 'Não informado'}</Text>
-                <Text style={styles.infoItem}>📱 Telefone: {telefone || 'Não informado'}</Text>
-                <Text style={styles.infoItem}>🪪 CPF: {cpf || 'Não informado'}</Text>
-                <Text style={styles.infoItem}>🌎 Nacionalidade: {nacionalidade || 'Não informado'}</Text>
-                <Text style={styles.infoItem}>🎂 Data de Nascimento: {dataNascimento || 'Não informado'}</Text>
+             {/* INFORMAÇÕES PESSOAIS */}
+<View style={styles.card}>
+  <Text style={styles.sectionTitle}>Informações Pessoais</Text>
 
-                <TouchableOpacity
-                  style={styles.editButton}
-                  onPress={() =>
-                    navigation.navigate('editarPerfilPF', {
-                      nome,
-                      email,
-                      telefone,
-                      cpf,
-                      nacionalidade,
-                      dataNascimento,
-                    })
-                  }
-                >
-                  <Text style={styles.editButtonText}>✏️ Editar Perfil</Text>
-                </TouchableOpacity>
-              </View>
+  {/* FOTO DE PERFIL */}
+  <View style={styles.profilePhotoContainer}>
+    <Image source={require('../../IMG/person.png')} style={styles.profilePhoto}/>
+  </View>
+
+  <Text style={styles.infoItem}>👤 Nome: João Silva</Text>
+  <Text style={styles.infoItem}>📧 Email: joao.silva@email.com</Text>
+  <Text style={styles.infoItem}>📱 Telefone: (11) 91234-5678</Text>
+  <Text style={styles.infoItem}>🪪 CPF: 123.456.789-00</Text>
+  <Text style={styles.infoItem}>🌎 Nacionalidade: Brasileiro</Text>
+  <Text style={styles.infoItem}>🎂 Data de Nascimento: 15/03/1990</Text>
+
+  <TouchableOpacity
+    style={styles.editButton}
+    onPress={() =>
+      navigation.navigate('editarPerfilPF', {
+        nome,
+        email,
+        telefone,
+        cpf,
+        nacionalidade,
+        dataNascimento,
+      })
+    }
+  >
+    <Text style={styles.editButtonText}>✏️ Editar Perfil</Text>
+  </TouchableOpacity>
+</View>
+
 
               {/* PROJETOS INSCRITOS */}
               <View style={styles.card}>
@@ -134,6 +159,32 @@ export default function PerfilPF() {
                   ))}
               </View>
 
+              {/* NOVA SEÇÃO - VAGAS DE EMPREGO */}
+              <View style={styles.card}>
+                <Text style={styles.sectionTitle}>Vagas de Emprego</Text>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => setMostrarVagas(!mostrarVagas)}
+                >
+                  <Text style={styles.buttonText}>
+                    {mostrarVagas ? 'Esconder Vagas' : 'Ver Vagas Disponíveis'}
+                  </Text>
+                </TouchableOpacity>
+
+                {mostrarVagas &&
+                  vagas.map((v, i) => (
+                    <View key={i} style={styles.subCard}>
+                      <Text style={styles.projectTitle}>{v.cargo}</Text>
+                      <Text>🏢 Empresa: {v.empresa}</Text>
+                      <Text>📍 Local: {v.local}</Text>
+                      <Text>{v.descricao}</Text>
+                      <TouchableOpacity onPress={() => Linking.openURL(v.link)}>
+                        <Text style={styles.linkText}>Ver Detalhes da Vaga</Text>
+                      </TouchableOpacity>
+                    </View>
+                  ))}
+              </View>
+
               {/* VOLTAR */}
               <TouchableOpacity
                 style={styles.backButton}
@@ -143,7 +194,7 @@ export default function PerfilPF() {
               </TouchableOpacity>
             </View>
 
-            {/* FOOTER RESPONSIVO */}
+            {/* FOOTER */}
             <View style={styles.footerWrapper}>
               <View style={styles.footer}>
                 <Text style={styles.footerTitle}>Acolha</Text>
@@ -154,18 +205,11 @@ export default function PerfilPF() {
                 <View style={styles.subscribe}>
                   <Text style={styles.subscribeTitle}>Sugestões</Text>
                   <Text style={styles.subscribeText}>
-                    Envie aqui suas sugestões, dúvidas ou críticas.{"\n"}Sua opinião é
+                    Envie aqui suas sugestões, dúvidas ou críticas.\nSua opinião é
                     muito importante para nós!
                   </Text>
                   <View style={styles.inputGroup}>
-                    <TextInput
-                      placeholder="Sua Sugestão"
-                      placeholderTextColor="white"
-                      style={styles.inputSugestao}
-                      multiline
-                      numberOfLines={4}
-                      textAlignVertical="top"
-                    />
+                    <TextInput placeholder="Sua Sugestão" placeholderTextColor="white" style={styles.inputSugestao} multiline numberOfLines={4} textAlignVertical="top"/>
                     <TouchableOpacity style={styles.inputButton}>
                       <Text style={styles.inputButtonText}>➤</Text>
                     </TouchableOpacity>
@@ -174,21 +218,15 @@ export default function PerfilPF() {
 
                 <View style={styles.socialContainer}>
                   <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/')}>
-                    <Image
-                      source={require('../../IMG/instragam.png')}
-                      style={styles.socialIcon}
-                    />
+                    <Image source={require('../../IMG/instragam.png')} style={styles.socialIcon}/>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => Linking.openURL('mailto:contato@acolha.com')}>
-                    <Image
-                      source={require('../../IMG/email.png')}
-                      style={styles.socialIcon}
-                    />
+                    <Image source={require('../../IMG/email.png')} style={styles.socialIcon}/>
                   </TouchableOpacity>
                 </View>
 
                 <Text style={styles.footerCopyright}>
-                  © 2025 todos os direitos reservados.{"\n"}Acolha é uma marca
+                  © 2025 todos os direitos reservados.\nAcolha é uma marca
                   registrada da Civitas Tech.
                 </Text>
               </View>
@@ -199,5 +237,3 @@ export default function PerfilPF() {
     </SafeAreaView>
   );
 }
-
- 

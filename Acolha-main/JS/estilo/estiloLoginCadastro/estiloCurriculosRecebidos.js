@@ -1,49 +1,108 @@
-import { StyleSheet, Dimensions } from "react-native";
-const { width, height } = Dimensions.get('window');
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#E5E5E5" },
-  backgroundImage: { flex: 1, width: '100%', height: '100%' },
-
-  contentWrapper: {
-    flexGrow: 1,
-    paddingHorizontal: 0,
-    alignItems: 'center',
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#f0f4f7",
   },
 
-  titulo: { fontSize: 24, fontWeight: "bold", color: "#357447", marginVertical: 20, textAlign: "center" },
+  container: {
+    padding: 20,
+    paddingBottom: 40,
+  },
 
-  card: { 
-    width: '95%',
-    backgroundColor: "#fff", 
-    borderRadius: 10, 
-    padding: 15, 
+  titulo: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#1a2e35",
+    textAlign: "center",
     marginBottom: 20,
-    alignSelf: 'center',
   },
 
-  input: { 
-    borderWidth: 1, 
-    borderColor: "#357447", 
-    borderRadius: 5, 
-    padding: 10, 
-    marginBottom: 8, 
-    color: 'black', 
-    minWidth: 0,
+  /* CARD PRINCIPAL */
+  card: {
+    backgroundColor: "#ffffff",
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 30,
+    elevation: 3,
   },
 
-  row: { 
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    alignItems: "center", 
-    marginBottom: 8 
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1a2e35",
+    marginBottom: 15,
+    textAlign: "center",
   },
 
-  botao: { backgroundColor: "#357447", borderRadius: 5, padding: 15, marginTop: 10, alignItems: "center" },
-  botaoTexto: { color: "white", fontWeight: "bold" },
-  botaoVoltar: { marginTop: 10, alignItems: "center" },
-  textoVoltar: { color: "#357447" },
+  /* Cada candidato */
+  candidatoCard: {
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 20,
+    elevation: 3,
+  },
 
+  fotoCandidato: {
+    width: 90,
+    height: 90,
+    borderRadius: 50,
+    alignSelf: "center",
+    marginBottom: 10,
+  },
+
+  candidatoNome: {
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#1a2e35",
+  },
+
+  candidatoCargo: {
+    fontSize: 15,
+    textAlign: "center",
+    color: "#4b5d67",
+    marginTop: 5,
+  },
+
+  candidatoResumo: {
+    marginTop: 10,
+    fontSize: 14,
+    textAlign: "center",
+    color: "#6d7a80",
+  },
+
+  botaoCurriculo: {
+    backgroundColor: "#27ae60",
+    paddingVertical: 10,
+    borderRadius: 10,
+    alignItems: "center",
+    width: "80%",
+    alignSelf: "center",
+    marginTop: 15,
+  },
+
+  botaoCurriculoTexto: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  /* Botão Voltar */
+  botaoVoltar: {
+    padding: 12,
+    alignItems: "center",
+    marginTop: 10,
+  },
+
+  textoVoltar: {
+    color: "#1a2e35",
+    fontSize: 16,
+  },
+
+  /* Footer */
   footer: { 
     width: '100%', 
     backgroundColor: '#357447', 

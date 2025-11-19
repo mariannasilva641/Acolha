@@ -205,7 +205,7 @@ export default StyleSheet.create({
   },
   socialIcon: {
     width: 50,
-    height: 50,
+    height: 40,
     marginHorizontal: 0.2,
   },
   footerCopyright: {

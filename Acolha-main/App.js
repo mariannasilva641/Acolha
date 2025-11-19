@@ -21,6 +21,8 @@ import PerfilAdm from './JS/perfis/perfilAdm';
 import tiVerde from './JS/pagInfo/tiVerde';
 import historiaImigrantes from './JS/pagInfo/historiaImigrantes';
 import historiaAtlas from './JS/pagInfo/historiaAtlas';
+import CurriculosRecebidos from './JS/login_cadastro/curriculosRecebidos';
+import CadastrarVagas from './JS/login_cadastro/cadastrarVagas';
 
 // Toast personalizado
 const toastConfig = {
@@ -50,7 +52,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  // Carregar fontes
   useEffect(() => {
     async function loadFonts() {
       await Font.loadAsync({
@@ -63,13 +64,14 @@ export default function App() {
   }, []);
 
   if (!fontsLoaded) {
-    return null; 
+    return null;
   }
 
   return (
     <>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="home" screenOptions={{ headerShown: false }}>
+          
           <Stack.Screen name="home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="ajuda" component={Ajuda} />
@@ -85,6 +87,8 @@ export default function App() {
           <Stack.Screen name="tiVerde" component={tiVerde} />
           <Stack.Screen name="historiaImigrantes" component={historiaImigrantes} />
           <Stack.Screen name="historiaAtlas" component={historiaAtlas} />
+          <Stack.Screen name="CurriculosRecebidos" component={CurriculosRecebidos} />
+          <Stack.Screen name="CadastrarVagas" component={CadastrarVagas} />
         </Stack.Navigator>
       </NavigationContainer>
 

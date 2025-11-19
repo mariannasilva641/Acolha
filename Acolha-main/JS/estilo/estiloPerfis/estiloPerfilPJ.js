@@ -99,6 +99,76 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontFamily:'Questrial-Regular'
   },
+botaoCadastrarVaga: {
+  backgroundColor: "#357447",
+  paddingVertical: 12,
+  borderRadius: 10,
+  alignItems: "center",
+  marginBottom: 12,
+},
+
+botaoVerCurriculos: {
+  backgroundColor: "#357447",
+  paddingVertical: 12,
+  borderRadius: 10,
+  alignItems: "center",
+  marginBottom: 20,
+},
+
+botaoTexto: {
+  color: "#fff",
+  fontSize: 16,
+  fontWeight: "bold",
+},
+vagaCard: {
+  backgroundColor: "#ffffff",
+  padding: 15,
+  borderRadius: 12,
+  marginVertical: 8,
+  elevation: 3, // sombra para Android
+  shadowColor: "#000", // sombra para iOS
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.2,
+  shadowRadius: 4,
+  borderWidth: 1,
+  borderColor: "#e0e0e0",
+},
+
+vagaTitulo: {
+  fontSize: 18,
+  fontWeight: "bold",
+  color: "#1a73e8",
+  marginBottom: 5,
+},
+
+vagaDescricao: {
+  fontSize: 14,
+  color: "#555",
+  marginBottom: 5,
+},
+
+vagaRequisitos: {
+  fontSize: 14,
+  color: "#333",
+  fontStyle: "italic",
+  marginBottom: 5,
+},
+
+vagaSalario: {
+  fontSize: 14,
+  color: "#27ae60",
+  fontWeight: "bold",
+  marginBottom: 10,
+},
+
+vagaLink: {
+  fontSize: 14,
+  fontWeight: "bold",
+  color: "#1a73e8",
+  textDecorationLine: "underline",
+},
+
+
 
   // Footer wrapper com largura total
   footerWrapper: {
@@ -139,7 +209,7 @@ export default StyleSheet.create({
   },
   inputButtonText: {fontFamily:'Questrial-Regular', color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 10, justifyContent: 'center' },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2 },
   footerCopyright: {
     color: 'white',
     fontSize: 12,

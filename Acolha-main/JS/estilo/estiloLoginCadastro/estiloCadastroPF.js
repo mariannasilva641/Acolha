@@ -32,7 +32,7 @@ export default StyleSheet.create({
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 41 },
   inputButtonText: { color: 'white', fontWeight: 'bold' },
   socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2 },
   errorText: { fontFamily:'Questrial-Regular',color: 'red', marginBottom: 8, fontSize: 12 },
   footerCopyright: { fontFamily:'Questrial-Regular',color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5, fontWeight: 'bold' },
   backgroundImage: { flex: 1, width: '100%', height: '100%' },

@@ -134,7 +134,7 @@
   inputButtonText: { color: "white", fontWeight: "bold" },
 
   socialContainer: { flexDirection: "row", marginTop: 10, justifyContent: "center" },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2, borderRadius: 10 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2, borderRadius: 10 },
   footerCopyright: {
     color: "white",
     fontSize: 12,

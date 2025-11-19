@@ -46,7 +46,7 @@ export default StyleSheet.create({
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5, height: 45, width: 41 },
   inputButtonText: { color: 'white', fontWeight: 'bold', paddingRight: 45 },
   socialContainer: { flexDirection: 'row', marginTop: 2, justifyContent: 'center' },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2 },
   footerCopyright: { color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5, marginBottom: 5, fontWeight: 'bold', fontFamily: 'Questrial-Regular' },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },

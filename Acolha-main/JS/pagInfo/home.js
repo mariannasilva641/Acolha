@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity,Linking, FlatList, ImageBackground, Animated, Easing} from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Linking, FlatList, ImageBackground, Animated, Easing } from 'react-native';
 import styles from "../estilo/estiloPagInfo/estiloHome.js";
 import { useNavigation } from '@react-navigation/native';
-
 
 export default function Home() {
   const navigation = useNavigation();
   const [menuAberto, setMenuAberto] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null); // estado do hover
+  const [hoveredCard, setHoveredCard] = useState(null); 
 
   // Animação do menu
   const menuAnim = useRef(new Animated.Value(0)).current;
@@ -28,7 +27,6 @@ export default function Home() {
     setTimeout(() => navigation.navigate(screen), 0);
   };
 
-  // Estilo da animação do menu
   const menuStyle = {
     opacity: menuAnim,
     transform: [
@@ -42,16 +40,36 @@ export default function Home() {
   };
 
   const equipe = [
-    { nome: 'David Wendel', funcao: 'Administrador', foto: require('../../IMG/Wendel.jpeg') },
-    { nome: 'Heloisa Maria', funcao: 'Produtora Midiática', foto: require('../../IMG/Heloisa.jpeg') },
-    { nome: 'Lorayne Yasmin', funcao: 'Pesquisadora de Inclusão Social', foto: require('../../IMG/Lorayne.jpeg') },
-    { nome: 'Marianna Silva', funcao: 'Gestora de Logística & Programadora Front-End', foto: require('../../IMG/Marianna.jpeg') },
-    { nome: 'Matheus Gabriel', funcao: 'Supervisor & Programador Front-End', foto: require('../../IMG/Matheus.jpeg') },
-    { nome: 'Nicolas Vieira', funcao: 'Desenvolvedor Back-End', foto: require('../../IMG/Nicolas.jpeg') },
-    { nome: 'Paulo Diaz', funcao: 'Pesquisador Legislativo', foto: require('../../IMG/Paulo.jpeg') },
-    { nome: 'Pedro Nogueira', funcao: 'Arquivista e Técnico de Documentação', foto: require('../../IMG/Pedro.jpeg') },
-    { nome: 'Vinícius Novaes', funcao: 'Produtor Midiático', foto: require('../../IMG/Vinicius.jpeg') },
-    { nome: 'Yasmyn Araujo', funcao: 'Produtora Midiática', foto: require('../../IMG/Yasmyn.jpeg') },
+    { 
+      nome: 'David Wendel', funcao: 'Administrador', foto: require('../../IMG/Wendel.jpeg'),
+    },
+    { 
+      nome: 'Heloisa Maria', funcao: 'Produtora Midiática', foto: require('../../IMG/Heloisa.jpeg'),
+    },
+    { 
+      nome: 'Lorayne Yasmin', funcao: 'Pesquisadora de Inclusão Social', foto: require('../../IMG/Lorayne.jpeg'),
+    },
+    { 
+      nome: 'Marianna Silva', funcao: 'Gestora de Logística & Programadora Mobile', foto: require('../../IMG/Marianna.jpeg'),
+    },
+    { 
+      nome: 'Matheus Gabriel', funcao: 'Supervisor & Programador Front-End', foto: require('../../IMG/Matheus.jpeg'),
+    },
+    { 
+      nome: 'Nicolas Vieira', funcao: 'Desenvolvedor Back-End', foto: require('../../IMG/Nicolas.jpeg'),
+    },
+    { 
+      nome: 'Paulo Diaz', funcao: 'Pesquisador Legislativo', foto: require('../../IMG/Paulo.jpeg'),
+    },
+    { 
+      nome: 'Pedro Nogueira', funcao: 'Arquivista e Técnico de Documentação', foto: require('../../IMG/Pedro.jpeg'),
+    },
+    { 
+      nome: 'Vinícius Novaes', funcao: 'Produtor Midiático', foto: require('../../IMG/Vinicius.jpeg'),
+    },
+    { 
+      nome: 'Yasmyn Araujo', funcao: 'Produtora Midiática', foto: require('../../IMG/Yasmyn.jpeg'),
+    },
   ];
 
   return (
@@ -60,7 +78,6 @@ export default function Home() {
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator>
-        
         {/* Navbar */}
         <View style={styles.navbar}>
           <Image source={require('../../IMG/LogoAcolhaBranco.png')} style={styles.navbarLogo} />
@@ -72,12 +89,10 @@ export default function Home() {
               <Text style={styles.navLink}>Login</Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.menuContainer}>
             <TouchableOpacity onPress={toggleMenu}>
               <Image source={require('../../IMG/menu.png')} style={{ width: 24, height: 24, marginRight: 20 }} resizeMode="contain" />
             </TouchableOpacity>
-
             <Animated.View style={[styles.dropdownMenu, menuStyle, { display: menuAberto ? 'flex' : 'none' }]}>
               <TouchableOpacity onPress={() => handleNavigate('projetosSociais')}>
                 <Text style={styles.dropdownItem}>📌 Projetos Sociais</Text>
@@ -97,10 +112,7 @@ export default function Home() {
         ].map((card) => (
           <Animated.View
             key={card.id}
-            style={[
-              styles.card,
-              hoveredCard === card.id && styles.cardHover,
-            ]}
+            style={[styles.card, hoveredCard === card.id && styles.cardHover]}
             onMouseEnter={() => setHoveredCard(card.id)}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -127,6 +139,16 @@ export default function Home() {
                 <Image source={item.foto} style={styles.equipeFoto} />
                 <Text style={styles.equipeNome}>{item.nome}</Text>
                 <Text style={styles.equipeFuncao}>{item.funcao}</Text>
+
+                {/* Ícones redes sociais */}
+                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                  <TouchableOpacity onPress={() => Linking.openURL(item.instagram)}>
+                    <Image source={require('../../IMG/instragam.png')} style={{ width: 44, height: 24, marginRight: 8,marginTop:10 }} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => Linking.openURL(item.github)}>
+                    <Image source={require('../../IMG/github.png')} style={{ width: 24, height: 24,marginTop:10 }} />
+                  </TouchableOpacity>
+                </View>
               </View>
             )}
           />
@@ -159,4 +181,3 @@ export default function Home() {
     </ImageBackground>
   );
 }
-

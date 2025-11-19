@@ -90,7 +90,7 @@ export default StyleSheet.create({
   footerText: { fontFamily: 'Questrial-Regular', textAlign: 'center', marginVertical: 5, color: 'white' },
   footerInfo: { textAlign: 'center', color: 'white', marginVertical: 2 },
   socialContainer: { flexDirection: 'row', marginTop: 2 },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2 },
   footerCopyright: { fontFamily: 'Questrial-Regular', color: '#ccc', fontSize: 12, textAlign: 'center', marginTop: 5, fontWeight: 'bold' },
 });
    

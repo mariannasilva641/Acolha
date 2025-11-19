@@ -92,6 +92,6 @@ export default StyleSheet.create({
   inputButton: { backgroundColor: '#255736', paddingHorizontal: 15, justifyContent: 'center', borderRadius: 5,width:41,height:45 },
   inputButtonText: { color: 'white', fontWeight: 'bold',fontFamily:'Questrial-Regular' },
   socialContainer: { flexDirection: 'row', justifyContent: 'center' },
-  socialIcon: { width: 50, height: 50, marginHorizontal: 0.2, borderRadius: 10 },
+  socialIcon: { width: 50, height: 40, marginHorizontal: 0.2, borderRadius: 10 },
   footerCopyright: { fontFamily: 'Questrial-Regular',color: 'white', fontSize: 12, textAlign: 'center', marginTop: 5,fontWeight: 'bold',fontWeight:'599'},
 });
